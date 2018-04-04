@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header'
 import Quiz from './components/Quiz'
 import Login from './components/Login'
+import SearchBar from './components/SearchBar'
 
 class App extends Component {
   constructor(props) {
@@ -61,6 +62,7 @@ class App extends Component {
           <Route path="/login" render={props => (
             <Login saveUser={this.saveUser} clearUser={this.clearUser} {...props} />
           )} />
+          <Route path="/search" component={SearchBar} />
         </div>
       </BrowserRouter>
     );

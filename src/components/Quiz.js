@@ -1,11 +1,8 @@
 
 import React, { Component } from 'react'
+import PlacesAutocomplete from 'react-places-autocomplete'
 
 class Quiz extends Component {
-  state = {
-
-  }
-
   componentDidMount() {
 
   }
@@ -16,7 +13,7 @@ class Quiz extends Component {
         <div className="QandA">
           <h2 className="question">where is your destination?</h2>
           <div className="choices">
-            <input
+
           </div>
         </div>
       </div>
