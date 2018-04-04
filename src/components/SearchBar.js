@@ -16,11 +16,11 @@ const cssClasses = {
   autocompleteContainer: 'autocomplete-container',
 };
 
-const options = {
-  types: ['(cities)']
-}
+// const options = {
+//   types: ['(cities)']
+// }
 
-const shouldFetchSuggestions = ({ value }) => value.length > 2;
+const shouldFetchSuggestions = ({ value }) => value.length > 1
 
 const onError = (status, clearSuggestions) => {
   /* eslint-disable no-console */
@@ -100,10 +100,10 @@ class SearchBar extends Component {
       value: this.state.address,
       onChange: this.handleChange,
       onBlur: () => {
-        console.log('Blur event!'); // eslint-disable-line no-console
+        console.log('Blur event!')
       },
       onFocus: () => {
-        console.log('Focused!'); // eslint-disable-line no-console
+        console.log('Focused!')
       },
       autoFocus: true,
       placeholder: 'Search Cities...',
@@ -121,7 +121,7 @@ class SearchBar extends Component {
             onEnterKeyDown={this.handleSelect}
             onError={onError}
             shouldFetchSuggestions={shouldFetchSuggestions}
-            options={options}
+            options={this.props.options}
           />
           {this.state.loading && (
             <div>
