@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom'
 import SearchBar from './SearchBar'
 
 class Quiz_01_Destination extends Component {
+  saveAnswer(e) {
+    console.log(e)
+  }
+
   render() {
     return(
       <div>
@@ -13,6 +17,7 @@ class Quiz_01_Destination extends Component {
             <SearchBar
               placeholder='Search cities...'
               options={{types: ['(cities)']}}
+              onChange={this.saveAnswer}
             />
           </div>
         </div>

@@ -14,16 +14,11 @@ const cssClasses = {
   root: 'search_form',
   input: 'search_input',
   autocompleteContainer: 'autocomplete-container',
-};
-
-// const options = {
-//   types: ['(cities)']
-// }
+}
 
 const shouldFetchSuggestions = ({ value }) => value.length > 1
 
 const onError = (status, clearSuggestions) => {
-  /* eslint-disable no-console */
   console.log(
     'Error happened while fetching suggestions from Google Maps API',
     status
@@ -67,7 +62,6 @@ class SearchBar extends Component {
       })
   }
 
-
   handleChange(address) {
     this.setState({
       address,
@@ -84,6 +78,8 @@ class SearchBar extends Component {
   }
 
   renderGeocodeSuccess(lat, lng) {
+    this.props.saveQuiz({lat})
+    this.props.saveQuiz({lng})
     return (
       <div className="alert alert-success" role="alert">
         <strong>Success!</strong> Geocoder found latitude and longitude:{' '}

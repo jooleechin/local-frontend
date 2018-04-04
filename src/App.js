@@ -16,6 +16,8 @@ class App extends Component {
     this.state = {
       user_id: 0,
       first: '',
+      lat: '',
+      lng: '',
       destination: '',
       latlang_stay: '',
       q1_transport: '',
@@ -59,11 +61,22 @@ class App extends Component {
           <Route path="/login" render={props => (
             <Login saveUser={this.saveUser} clearUser={this.clearUser} {...props} />
           )} />
-          <Route path="/quiz01" component={Quiz01} />
-          <Route path="/quiz02" component={Quiz02} />
-          <Route path="/quiz03" component={Quiz03} />
-          <Route path="/quiz04" component={Quiz04} />
-          <Route path="/quiz05" component={Quiz05} />
+
+          <Route path="/quiz01" render={props => (
+            <Quiz01 saveQuiz={this.saveQuiz} {...props} />
+          )} />
+          <Route path="/quiz02" render={props => (
+            <Quiz02 saveQuiz={this.saveQuiz} {...props} />
+          )} />
+          <Route path="/quiz03" render={props => (
+            <Quiz03 saveQuiz={this.saveQuiz} {...props} />
+          )} />
+          <Route path="/quiz04" render={props => (
+            <Quiz04 saveQuiz={this.saveQuiz} {...props} />
+          )} />
+          <Route path="/quiz05" render={props => (
+            <Quiz05 saveQuiz={this.saveQuiz} {...props} />
+          )} />
         </div>
       </BrowserRouter>
     );
