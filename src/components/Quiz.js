@@ -9,18 +9,13 @@ class Quiz extends Component {
   }
 
   render() {
-    const options = {
-      types: ['address']
-    }
-    const inputProps = {
-      placeholder: 'Search place...'
-    }
     return(
       <div>
         <div className="QandA">
           <h2 className="question">where is your destination?</h2>
           <div className="choices">
             <SearchBar
+              placeholder='Search cities...'
               options={{types: ['(cities)']}}
             />
           </div>
@@ -29,8 +24,7 @@ class Quiz extends Component {
           <h2 className="question">where are you staying?</h2>
           <div className="choices">
             <SearchBar
-              inputProps={inputProps}
-              options={options}
+              placeholder='Search places...'
             />
           </div>
         </div>
@@ -61,6 +55,7 @@ class Quiz extends Component {
             <span>food</span>
             <span>museums</span>
             <span>random stuff</span>
+
           </div>
         </div>
       </div>

@@ -106,11 +106,11 @@ class SearchBar extends Component {
         console.log('Focused!')
       },
       autoFocus: true,
-      placeholder: 'Search Cities...',
+      placeholder: this.props.placeholder,
       name: 'Demo__input',
       id: 'my-input-id',
     }
-    return(
+    return (
       <div>
         <div className="searchBar">
           <PlacesAutocomplete

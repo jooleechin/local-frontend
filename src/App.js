@@ -4,7 +4,11 @@ import './App.css';
 import Header from './components/Header'
 import Quiz from './components/Quiz'
 import Login from './components/Login'
-import SearchBar from './components/SearchBar'
+import Quiz01 from './components/Quiz_01_Destination'
+import Quiz02 from './components/Quiz_02_Stay'
+import Quiz03 from './components/Quiz_03_Transport'
+import Quiz04 from './components/Quiz_04_Time'
+import Quiz05 from './components/Quiz_05_Interest'
 
 class App extends Component {
   constructor(props) {
@@ -12,12 +16,11 @@ class App extends Component {
     this.state = {
       user_id: 0,
       first: '',
-      last: '',
-      email: '',
-      phone: '',
-      q1: '',
-      q2: '',
-      q3: ''
+      destination: '',
+      latlang_stay: '',
+      q1_transport: '',
+      q2_time: '',
+      q3_interests: ''
     }
   }
 
@@ -31,14 +34,8 @@ class App extends Component {
     })
   }
 
-  saveQuiz = (user_id, first, q1, q2, q3) => {
-    this.setState({
-      user_id: user_id,
-      first: first,
-      q1: q1,
-      q2: q2,
-      q3: q3
-    })
+  saveQuiz = (newState) => {
+    this.setState(newState)
   }
 
   clearUser = () => {
@@ -62,7 +59,11 @@ class App extends Component {
           <Route path="/login" render={props => (
             <Login saveUser={this.saveUser} clearUser={this.clearUser} {...props} />
           )} />
-          <Route path="/search" component={SearchBar} />
+          <Route path="/quiz01" component={Quiz01} />
+          <Route path="/quiz02" component={Quiz02} />
+          <Route path="/quiz03" component={Quiz03} />
+          <Route path="/quiz04" component={Quiz04} />
+          <Route path="/quiz05" component={Quiz05} />
         </div>
       </BrowserRouter>
     );
