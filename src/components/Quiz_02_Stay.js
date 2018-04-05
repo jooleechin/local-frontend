@@ -4,18 +4,29 @@ import { Link } from 'react-router-dom'
 import SearchBar from './SearchBar'
 
 class Quiz_02_Stay extends Component {
+  saveLatDestin = (e) => {
+    e.preventDefault()
+    // this.props.saveQuiz({latlang_stay: e.target.search_input.value})
+    this.props.history.push('/quiz03')
+  }
+  sendData = (lat, lng) => {
+    this.props.saveQuiz({
+      lat_stay: lat,
+      lng_stay: lng
+    })
+  }
+
   render() {
     return(
       <div>
-        <div className="QandA">
-          <h2 className="question">where are you staying?</h2>
-          <div className="choices">
+        <form className="QandA" onSubmit={this.saveLatDestin}>
+          <label for="question" className="question">where are you staying?</label>
             <SearchBar
+              send={this.sendData}
               placeholder='Search places...'
             />
-          </div>
-        </div>
-        <Link to="/quiz03"><div className="next">next</div></Link>
+          <input type="submit" value="next" id="submit" />
+        </form>
       </div>
     )
   }

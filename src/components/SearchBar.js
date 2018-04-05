@@ -40,7 +40,7 @@ class SearchBar extends Component {
 
   handleSelect(address) {
     this.setState({
-      address,
+      address: address,
       loading: true
     })
 
@@ -48,11 +48,13 @@ class SearchBar extends Component {
       .then(results => getLatLng(results[0]))
       .then(({ lat, lng }) => {
         console.log('latlang success!!', { lat, lng })
+        this.props.send(lat, lng) //passing down the function from q2 so that i can access
         this.setState({
           geocodeResults: this.renderGeocodeSuccess(lat, lng),
           loading: false
         })
       })
+
       .catch (err => {
         console.log('error!', err)
         this.setState({
@@ -64,7 +66,7 @@ class SearchBar extends Component {
 
   handleChange(address) {
     this.setState({
-      address,
+      address: address,
       geocodeResults: null,
     })
   }
@@ -78,16 +80,15 @@ class SearchBar extends Component {
   }
 
   renderGeocodeSuccess(lat, lng) {
-    this.props.saveQuiz({lat})
-    this.props.saveQuiz({lng})
-    return (
-      <div className="alert alert-success" role="alert">
-        <strong>Success!</strong> Geocoder found latitude and longitude:{' '}
-        <strong>
-          {lat}, {lng}
-        </strong>
-      </div>
-    );
+    console.log('whatsup')
+    // return (
+    //   <div className="alert alert-success" role="alert">
+    //     <strong>Success!</strong> Geocoder found latitude and longitude:{' '}
+    //     <strong>
+    //       {lat}, {lng}
+    //     </strong>
+    //   </div>
+    // );
   }
 
   render() {
@@ -103,7 +104,7 @@ class SearchBar extends Component {
       },
       autoFocus: true,
       placeholder: this.props.placeholder,
-      name: 'Demo__input',
+      name: 'search_input',
       id: 'my-input-id',
     }
     return (

@@ -16,13 +16,12 @@ class App extends Component {
     this.state = {
       user_id: 0,
       first: '',
-      lat: '',
-      lng: '',
+      lat_stay: '',
+      lng_stay: '',
       destination: '',
-      latlang_stay: '',
       q1_transport: '',
-      q2_time: '',
-      q3_interests: ''
+      q2_time: [],
+      q3_interests: []
     }
   }
 
@@ -61,7 +60,6 @@ class App extends Component {
           <Route path="/login" render={props => (
             <Login saveUser={this.saveUser} clearUser={this.clearUser} {...props} />
           )} />
-
           <Route path="/quiz01" render={props => (
             <Quiz01 saveQuiz={this.saveQuiz} {...props} />
           )} />
@@ -72,10 +70,10 @@ class App extends Component {
             <Quiz03 saveQuiz={this.saveQuiz} {...props} />
           )} />
           <Route path="/quiz04" render={props => (
-            <Quiz04 saveQuiz={this.saveQuiz} {...props} />
+            <Quiz04 q2_time={this.state.q2_time} saveQuiz={this.saveQuiz} {...props} />
           )} />
           <Route path="/quiz05" render={props => (
-            <Quiz05 saveQuiz={this.saveQuiz} {...props} />
+            <Quiz05 q3_interests={this.state.q3_interests} saveQuiz={this.saveQuiz} {...props} />
           )} />
         </div>
       </BrowserRouter>

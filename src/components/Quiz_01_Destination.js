@@ -4,24 +4,28 @@ import { Link } from 'react-router-dom'
 import SearchBar from './SearchBar'
 
 class Quiz_01_Destination extends Component {
-  saveAnswer(e) {
-    console.log(e)
+  saveLatDestin = (e) => {
+    e.preventDefault()
+    console.log(this.props.geocodeResults)
+    this.props.saveQuiz({destination: e.target.search_input.value})
+    this.props.history.push('/quiz02')
   }
-
+  sendData = (lat, lng) => {
+    console.log(lat)
+    console.log(lng)
+  }
   render() {
     return(
       <div>
-        <div className="QandA">
-          <h2 className="question">where is your destination?</h2>
-          <div className="choices">
+        <form className="QandA" onSubmit={this.saveLatDestin}>
+          <label for="question" className="question">where is your destination?</label>
             <SearchBar
+              send={this.sendData}
               placeholder='Search cities...'
               options={{types: ['(cities)']}}
-              onChange={this.saveAnswer}
             />
-          </div>
-        </div>
-        <Link to="/quiz02"><div className="next">next</div></Link>
+          <input type="submit" value="next" id="submit" />
+        </form>
       </div>
     )
   }
