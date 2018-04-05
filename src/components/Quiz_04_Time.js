@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import SearchBar from './SearchBar'
 
 class Quiz_04_Time extends Component {
   removeDup = (val, i, self) => (self.indexOf(val) === i)

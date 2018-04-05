@@ -1,12 +1,10 @@
 
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import SearchBar from './SearchBar'
 
 class Quiz_02_Stay extends Component {
   saveLatDestin = (e) => {
     e.preventDefault()
-    // this.props.saveQuiz({latlang_stay: e.target.search_input.value})
     this.props.history.push('/quiz03')
   }
   sendData = (lat, lng) => {

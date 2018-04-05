@@ -1,19 +1,20 @@
 
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import SearchBar from './SearchBar'
 
 class Quiz_01_Destination extends Component {
+
   saveLatDestin = (e) => {
     e.preventDefault()
-    console.log(this.props.geocodeResults)
     this.props.saveQuiz({destination: e.target.search_input.value})
     this.props.history.push('/quiz02')
+
   }
   sendData = (lat, lng) => {
     console.log(lat)
     console.log(lng)
-  }
+}
+
   render() {
     return(
       <div>

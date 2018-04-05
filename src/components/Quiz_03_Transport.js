@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import SearchBar from './SearchBar'
 
 class Quiz_03_Transport extends Component {
   saveAnswer = (e) => {
