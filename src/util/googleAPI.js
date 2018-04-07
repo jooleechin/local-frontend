@@ -1,15 +1,12 @@
 import axios from 'axios'
-let KEY = 'AIzaSyAAi2CjqjWvG6U7Y19t9W6BfYMDnHDuiLA'
-let baseURL = `http://localhost:3000`
+let googleBaseURL = `http://localhost:3000/google`
+let photoBaseURL = `http://localhost:3000/photo`
 
-function createAnswer(newAnswer) {
-  return axios.get(`${baseURL}/questions`)
-  .then ((res) => {
-    console.log(res.data)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+function getRestaurant(lat, lng, radius, type, keyword) {
+  return axios.get(`${googleBaseURL}?lat=${lat}&lng=${lng}&radius=${radius}&type=${type}&keyword=${keyword}`)
 }
 
-export default { createAnswer }
+function getPhoto(photoreference) {
+  return axios.get(`${photoBaseURL}?photoreference=${photoreference}`)
+}
+export default { getRestaurant, getPhoto }

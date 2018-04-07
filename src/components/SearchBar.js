@@ -40,7 +40,7 @@ class SearchBar extends Component {
 
   handleSelect(address) {
     this.setState({
-      address: address,
+      address,
       loading: true
     })
 
@@ -66,7 +66,7 @@ class SearchBar extends Component {
 
   handleChange(address) {
     this.setState({
-      address: address,
+      address,
       geocodeResults: null,
     })
   }

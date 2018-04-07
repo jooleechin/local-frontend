@@ -6,9 +6,10 @@ import Login from './components/Login'
 import Signup from './components/CreateAccount'
 import Quiz01 from './components/Quiz_01_Destination'
 import Quiz02 from './components/Quiz_02_Stay'
-import Quiz03 from './components/Quiz_03_Transport'
-import Quiz04 from './components/Quiz_04_Time'
-import Quiz05 from './components/Quiz_05_Interest'
+import Quiz03 from './components/Quiz_03_Money'
+import Quiz04 from './components/Quiz_04_Transport'
+import Quiz05 from './components/Quiz_05_Time'
+import Quiz06 from './components/Quiz_06_Interest'
 import Results from './components/Results'
 
 class App extends Component {
@@ -19,10 +20,12 @@ class App extends Component {
       first: '',
       lat_stay: '',
       lng_stay: '',
+      radius: '',
       destination: '',
       q1_transport: '',
-      q2_time: [],
-      q3_interests: []
+      q2_money: 0,
+      q3_time: [],
+      q4_interests: []
     }
   }
 
@@ -56,7 +59,7 @@ class App extends Component {
         <div className="App">
           <Header id={this.state.id} name={this.state.first} clearUser={this.clearUser} />
           <Route path="/login" render={props => (
-            <Login saveUser={this.saveUser} clearUser={this.clearUser} {...props} />
+            <Login saveUser={this.saveUser} clearUser={this.clearUser} saveQuiz={this.saveQuiz} {...props} />
           )} />
           <Route path="/signup" render={props => (
             <Signup saveUser={this.saveUser} {...props} />
@@ -71,17 +74,22 @@ class App extends Component {
             <Quiz03 saveQuiz={this.saveQuiz} {...props} />
           )} />
           <Route path="/quiz04" render={props => (
-            <Quiz04 q2_time={this.state.q2_time} saveQuiz={this.saveQuiz} {...props} />
+            <Quiz04 saveQuiz={this.saveQuiz} {...props} />
           )} />
           <Route path="/quiz05" render={props => (
-            <Quiz05
+            <Quiz05 q3_time={this.state.q3_time} saveQuiz={this.saveQuiz} {...props} />
+          )} />
+          <Route path="/quiz06" render={props => (
+            <Quiz06
               first={this.state.first}
               lat_stay={this.state.lat_stay}
               lng_stay={this.state.lng_stay}
               destination={this.state.destination}
+              radius={this.state.radius}
               q1_transport={this.state.q1_transport}
-              q2_time={this.state.q2_time}
-              q3_interests={this.state.q3_interests}
+              q2_money={this.state.q2_money}
+              q3_time={this.state.q3_time}
+              q4_interests={this.state.q4_interests}
               user_id={this.state.user_id}
               saveQuiz={this.saveQuiz} {...props} />
           )} />
@@ -91,11 +99,13 @@ class App extends Component {
               lat_stay={this.state.lat_stay}
               lng_stay={this.state.lng_stay}
               destination={this.state.destination}
+              radius={this.state.radius}
               q1_transport={this.state.q1_transport}
-              q2_time={this.state.q2_time}
-              q3_interests={this.state.q3_interests}
+              q2_money={this.state.q2_money}
+              q3_time={this.state.q3_time}
+              q4_interests={this.state.q4_interests}
               user_id={this.state.user_id} {...props} />
-          )}
+          )} />
         </div>
       </BrowserRouter>
     );

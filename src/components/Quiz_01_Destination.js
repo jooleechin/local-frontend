@@ -13,7 +13,7 @@ class Quiz_01_Destination extends Component {
   sendData = (lat, lng) => {
     console.log(lat)
     console.log(lng)
-}
+  }
 
   render() {
     return(

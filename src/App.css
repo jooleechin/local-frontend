@@ -4,12 +4,6 @@
   margin-right: auto;
   margin-left: auto;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
 .App-header {
   background-color: #222;
   height: 150px;
@@ -71,4 +65,29 @@
   font-size: 16px;
   border-radius: 2px;
   outline: none;
+}
+
+/* q1_destination */
+.QandA {
+  margin-top: 8%;
+}
+.question {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 3.3em;
+}
+#submit {
+  font-family: 'Hind Madurai', sans-serif;
+  font-weight: 500;
+  font-size: 1.5em;
+  margin-top: 3%;
+  border-radius: 25px;
+  padding: 1% 3%;
+}
+/* results.js */
+.right-half {
+  width: 50%;
+  height: 100%;
+  background-color: #E3F0FF;
+  float: right;
 }

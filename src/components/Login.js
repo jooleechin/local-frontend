@@ -17,7 +17,20 @@ class Login extends Component {
       let phone = data.data.matches.phone
       if (data.data.matches) {
         this.props.saveUser(id, first, last, email, phone)
-        this.props.history.push('/quiz01')
+        // just for test
+        this.props.saveQuiz({
+          lat_stay: '47.6221999',
+          lng_stay: '-122.3163333',
+          radius: '10000',
+          destination: 'seattle, wa',
+          q1_transport: 'car',
+          q2_money: 2,
+          q3_time: 'morning',
+          q4_interests: 'shopping'
+        })
+        this.props.history.push('/main')
+        // just for test
+        // this.props.history.push('/quiz01')
       } else {
         alert('Your password is not correct!')
       }
