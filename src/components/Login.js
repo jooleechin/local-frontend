@@ -26,7 +26,7 @@ class Login extends Component {
           q1_transport: 'car',
           q2_money: 2,
           q3_time: 'morning',
-          q4_interests: 'shopping'
+          q4_interests: ['shopping_mall', 'cafe']
         })
         this.props.history.push('/main')
         // just for test
@@ -42,10 +42,14 @@ class Login extends Component {
     return(
       <div className="box2">
         <form id="formLogin" onSubmit={this.loginCheck}>
-          <label for="email" className="calisto">email: </label>
-            <input name="email" id="email" type="email" required/>
-          <label for="password" className="calisto">password: </label>
-            <input name="password" id="password" type="password" required/>
+          <div>
+            <label for="email" className="calisto">email: </label>
+              <input name="email" id="email" type="email" required/>
+          </div>
+          <div>
+            <label for="password" className="calisto">password: </label>
+              <input name="password" id="password" type="password" required/>
+          </div>
           <div className="submitOcreate">
             <input type="submit" value="login" id="submit" className="calisto grow" />
           </div>

@@ -25,7 +25,8 @@ class App extends Component {
       q1_transport: '',
       q2_money: 0,
       q3_time: [],
-      q4_interests: []
+      q4_interests: [],
+      query: ''
     }
   }
 
@@ -91,7 +92,8 @@ class App extends Component {
               q3_time={this.state.q3_time}
               q4_interests={this.state.q4_interests}
               user_id={this.state.user_id}
-              saveQuiz={this.saveQuiz} {...props} />
+              saveQuiz={this.saveQuiz}
+              query={this.state.query} {...props} />
           )} />
           <Route path="/main" render={props => (
             <Results
@@ -104,7 +106,8 @@ class App extends Component {
               q2_money={this.state.q2_money}
               q3_time={this.state.q3_time}
               q4_interests={this.state.q4_interests}
-              user_id={this.state.user_id} {...props} />
+              user_id={this.state.user_id}
+              query={this.state.query} {...props} />
           )} />
         </div>
       </BrowserRouter>

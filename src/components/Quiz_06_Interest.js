@@ -3,13 +3,34 @@ import React, { Component } from 'react'
 import localAPI from '../util/localAPI'
 
 class Quiz_06_Interest extends Component {
+
   removeDup = (val, i, self) => (self.indexOf(val) === i)
+
   saveAnswer = (e) => {
     let interests = [...this.props.q4_interests]
-    interests.push(e.target.dataset.answer)
+    if (e.target.dataset.answer === 'nature') {
+      interests = [...interests, 'park', 'natural_feature']
+    }
+    if (e.target.dataset.answer === 'coffee') {
+      interests = [...interests, 'cafe']
+    }
+    if (e.target.dataset.answer === 'shopping') {
+      interests = [...interests, 'department_store', 'shopping_mall', 'store']
+    }
+    if (e.target.dataset.answer === 'food') {
+      interests = [...interests, 'restaurant', 'cafe', 'bar', 'bakery']
+    }
+    if (e.target.dataset.answer === 'museum') {
+      interests = [...interests, 'art_gallery', 'museum']
+    }
+    if (e.target.dataset.answer === 'night_out') {
+      interests = [...interests, 'bar', 'night_club', 'casino']
+    }
+    // interests.push(e.target.dataset.answer)
+    // console.log(interests)
     let unique = interests.filter(this.removeDup)
     this.props.saveQuiz({q4_interests: unique})
-  }
+    }
 
   radiusCalc = (transport) => {
     switch (transport) {
@@ -55,11 +76,11 @@ class Quiz_06_Interest extends Component {
           <label for="question" className="question">what are your interests?<br />(you can choose more than one option)</label>
           <div className="choices">
             <span onClick={this.saveAnswer} data-answer='nature'>nature</span>
-            <span onClick={this.saveAnswer} data-answer='instagram'>cafe</span>
+            <span onClick={this.saveAnswer} data-answer='coffee'>coffee</span>
             <span onClick={this.saveAnswer} data-answer='shopping'>shopping</span>
             <span onClick={this.saveAnswer} data-answer='food'>food</span>
-            <span onClick={this.saveAnswer} data-answer='museums'>museums</span>
-            <span onClick={this.saveAnswer} data-answer='random'>random stuff</span>
+            <span onClick={this.saveAnswer} data-answer='museum'>museum</span>
+            <span onClick={this.saveAnswer} data-answer='night_out'>night out</span>
           </div>
           <input type="submit" value="submit" id="submit" />
         </form>

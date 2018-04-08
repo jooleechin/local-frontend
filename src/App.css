@@ -66,6 +66,17 @@
   border-radius: 2px;
   outline: none;
 }
+/* login.js */
+.box2 {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#formLogin label{
+  font-family: 'Playfair Display', serif;
+  font-weight: 400; 
+}
 
 /* q1_destination */
 .QandA {

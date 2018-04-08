@@ -10,6 +10,10 @@ class Quiz_05_Time extends Component {
     let unique = timeSlot.filter(this.removeDup)
     this.props.saveQuiz({q3_time: unique})
   }
+  //
+  // saveQuiz = () => {
+  //   this.props.saveQuiz({q3_time: this.state.unique})
+  // }
 
   render() {
     return(
@@ -23,7 +27,7 @@ class Quiz_05_Time extends Component {
             <span onClick={this.saveAnswer} data-answer='all_day'>all day</span>
           </div>
         </div>
-        <Link to="/quiz06"><div className="next">next</div></Link>
+        <Link to="/quiz06"><div className="next" >next</div></Link>
       </div>
     )
   }

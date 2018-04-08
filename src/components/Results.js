@@ -7,11 +7,15 @@ class Results extends Component {
     choices: [],
     choiceIndex: -1,
     photo_reference: '',
-    photoUrls: []
+    photoUrls: [],
+    interests: this.props.q4_interests
   }
 
   listOfChoices = (choices, photoUrls) => {
-    choices = choices.filter(ele => ele.price_level === this.props.q2_money)
+    photoUrls.forEach((url, i) => {
+      choices[i].photoUrl = url
+    })
+    // choices = choices.filter(ele => ele.price_level === this.props.q2_money)
     this.setState({
       choices: choices,
       choiceIndex: 0,
@@ -25,11 +29,15 @@ class Results extends Component {
   }
 
   componentDidMount() {
-    let call1 = googleAPI.getRestaurant(this.props.lat_stay, this.props.lng_stay, this.props.radius, 'restaurant', 'asian')
+    console.log(this.state.interests)
+    let arrOfCalls = this.state.interests.map(ele => {
+      console.log('ele', ele)
+      return googleAPI.getPlace(this.props.lat_stay, this.props.lng_stay, this.props.radius, ele, this.props.q2_money)
+    })
 
-    let call2 = googleAPI.getRestaurant(this.props.lat_stay, this.props.lng_stay, this.props.radius, 'restaurant', 'italian')
+    console.log(arrOfCalls)
 
-    Promise.all([call1, call2])
+    Promise.all(arrOfCalls)
     .then(responses => {
       //console.log('responses', responses)
       let data = responses.reduce((arr, res) => {
@@ -40,14 +48,17 @@ class Results extends Component {
       // console.log('final flat data', data)
       console.log(data)
       let photosPromises = data.map((data) => {
+        if (data.photos === undefined ) return {}
         return googleAPI.getPhoto(data.photos[0].photo_reference)
       })
+      console.log('photoprom', photosPromises)
       return Promise.all(photosPromises)
       .then(responses => {
         /*if (!responses || !responses[0] || !responses[0].data) {
           return
         }*/
         let photoUrls = responses.map(response => {
+          if (response === undefined) return {}
           let host = 'https://lh4.googleusercontent.com'
           return host + response.data.path
         })
@@ -55,6 +66,37 @@ class Results extends Component {
       })
       // this.listOfChoices(data)
     })
+
+    // let call1 = googleAPI.getPlace(this.props.lat_stay, this.props.lng_stay, this.props.radius, this.props.q4_interests, this.props.q2_money)
+
+    // let call2 = googleAPI.getPlace(this.props.lat_stay, this.props.lng_stay, this.props.radius, 'restaurant', 'italian')
+    //
+    // Promise.all([call1, call2])
+    // .then(responses => {
+    //   //console.log('responses', responses)
+    //   let data = responses.reduce((arr, res) => {
+    //     //console.log('response', res)
+    //     //console.log('results', res.data.results)
+    //     return [...arr, ...res.data.results]
+    //   }, [])
+    //   // console.log('final flat data', data)
+    //   console.log(data)
+    //   let photosPromises = data.map((data) => {
+    //     return googleAPI.getPhoto(data.photos[0].photo_reference)
+    //   })
+    //   return Promise.all(photosPromises)
+    //   .then(responses => {
+    //     /*if (!responses || !responses[0] || !responses[0].data) {
+    //       return
+    //     }*/
+    //     let photoUrls = responses.map(response => {
+    //       let host = 'https://lh4.googleusercontent.com'
+    //       return host + response.data.path
+    //     })
+    //     this.listOfChoices(data, photoUrls)
+    //   })
+    //   // this.listOfChoices(data)
+    // })
 
   }
 // {{this.state.photos}.forEach(photo => {
@@ -71,17 +113,21 @@ class Results extends Component {
 // <Button onClick={this.selectNextChoice} />
 
   render() {
-    console.log('state', this.state)
+    // console.log('state', this.state)
     let item = this.state.choices[this.state.choiceIndex]
+    // console.log('choice', item)
     item = item || {}
-    let { name, icon, vicinity, photos, price_level, rating } = item
-    photos = photos || []
-    let photoUrl = (this.state.photoUrls.length > 0) && this.state.photoUrls[0]
+    let { name, icon, vicinity, price_level, rating, photoUrl } = item
     return(
       <div className="right-half">
         {name}
         {rating}
-        <img src={photoUrl}/>
+        <img src={photoUrl} alt={photoUrl}/>
+        <img src='../assests/noPhoto.png' alt={photoUrl}/>
+        {price_level}
+        {icon}
+        {vicinity}
+        <button onClick={this.selectNextChoice}>NEXT</button>
       </div>
     )
   }

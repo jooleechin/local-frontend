@@ -16,7 +16,6 @@ class Quiz_03_Money extends Component {
             <span onClick={this.saveAnswer} data-answer='2'>$$</span>
             <span onClick={this.saveAnswer} data-answer='3'>$$$</span>
             <span onClick={this.saveAnswer} data-answer='4'>$$$$</span>
-            <span onClick={this.saveAnswer} data-answer='5'>$$$$$</span>
           </div>
         </div>
         <Link to="/quiz04"><div className="next">next</div></Link>
