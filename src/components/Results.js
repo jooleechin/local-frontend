@@ -29,9 +29,7 @@ class Results extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state.interests)
     let arrOfCalls = this.state.interests.map(ele => {
-      console.log('ele', ele)
       return googleAPI.getPlace(this.props.lat_stay, this.props.lng_stay, this.props.radius, ele, this.props.q2_money)
     })
 
@@ -58,7 +56,7 @@ class Results extends Component {
           return
         }*/
         let photoUrls = responses.map(response => {
-          if (response === undefined) return {}
+          if (response === undefined || response.data === undefined) return {}
           let host = 'https://lh4.googleusercontent.com'
           return host + response.data.path
         })
@@ -112,6 +110,18 @@ class Results extends Component {
 //
 // <Button onClick={this.selectNextChoice} />
 
+
+// <div className="right-half">
+//   {name}
+//   {rating}
+//   <img src={photoUrl} alt={photoUrl}/>
+//   <img src='../assests/noPhoto.png' alt={photoUrl}/>
+//   {price_level}
+//   {icon}
+//   {vicinity}
+//   <button onClick={this.selectNextChoice}>NEXT</button>
+// </div>
+
   render() {
     // console.log('state', this.state)
     let item = this.state.choices[this.state.choiceIndex]
@@ -120,14 +130,13 @@ class Results extends Component {
     let { name, icon, vicinity, price_level, rating, photoUrl } = item
     return(
       <div className="right-half">
-        {name}
-        {rating}
-        <img src={photoUrl} alt={photoUrl}/>
-        <img src='../assests/noPhoto.png' alt={photoUrl}/>
-        {price_level}
-        {icon}
-        {vicinity}
-        <button onClick={this.selectNextChoice}>NEXT</button>
+        <div className='placeholderImg'> </div>
+        <div className="placeDesc tl">
+          <div className='placeName'><h3>Monsoon Seattle</h3></div>
+          <div className='address'><h4>400 12th Ave E Seattle, WA 98102</h4></div>
+          <div className="rating"><h4>&#9733;	&#9733;	&#9733;</h4></div>
+          <div className="price_level"><h4>$$</h4></div>
+        </div>
       </div>
     )
   }
