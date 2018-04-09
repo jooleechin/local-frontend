@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { Menu, Anchor, UserIcon, SearchIcon } from 'grommet'
 
 class Header extends Component {
   changeToLogout() {
@@ -12,8 +13,19 @@ class Header extends Component {
   }
   render() {
     return(
-      <div>
-        {this.changeToLogout()}
+      <div className='headerButt'>
+        <Anchor icon={<SearchIcon />} href='#' primary={false} reverse={true} />
+        <Menu responsive={false} icon={<UserIcon />} inline={false} primary={false}>
+          <Anchor>
+            hi, {this.props.name}
+          </Anchor>
+          <Anchor path={{path: '/login'}}>
+            my account
+          </Anchor>
+          <Anchor href='#'>
+            logout
+          </Anchor>
+        </Menu>
       </div>
     )
   }

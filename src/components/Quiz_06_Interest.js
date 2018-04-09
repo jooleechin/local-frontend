@@ -63,7 +63,7 @@ class Quiz_06_Interest extends Component {
       q1_transport: this.props.q1_transport,
       q2_money: this.props.q2_money,
       q3_time: this.props.q3_time.toString(),
-      q4_interests: this.props.q4_interests.toString(),
+      q4_interests: this.props.q4_interests.toString()
     }
     localAPI.createAnswer(newAnswer)
     this.props.history.push('/main')

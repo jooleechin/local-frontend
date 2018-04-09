@@ -11,6 +11,7 @@ import Quiz04 from './components/Quiz_04_Transport'
 import Quiz05 from './components/Quiz_05_Time'
 import Quiz06 from './components/Quiz_06_Interest'
 import Results from './components/Results'
+import Itin from './components/Itin'
 
 class App extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class App extends Component {
       q2_money: 0,
       q3_time: [],
       q4_interests: [],
+      place_ID: '',
       query: ''
     }
   }
@@ -97,6 +99,20 @@ class App extends Component {
           )} />
           <Route path="/main" render={props => (
             <Results
+              first={this.state.first}
+              lat_stay={this.state.lat_stay}
+              lng_stay={this.state.lng_stay}
+              destination={this.state.destination}
+              radius={this.state.radius}
+              q1_transport={this.state.q1_transport}
+              q2_money={this.state.q2_money}
+              q3_time={this.state.q3_time}
+              q4_interests={this.state.q4_interests}
+              user_id={this.state.user_id}
+              query={this.state.query} {...props} />
+          )} />
+          <Route path="/itin" render={props => (
+            <Itin
               first={this.state.first}
               lat_stay={this.state.lat_stay}
               lng_stay={this.state.lng_stay}

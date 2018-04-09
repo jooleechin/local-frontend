@@ -11,4 +11,14 @@ function createAnswer(newAnswer) {
   })
 }
 
-export default { createAnswer }
+function addToItin(place) {
+  return axios.post(`${baseURL}/place`, place)
+  .then ((res) => {
+    console.log(res.data)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+}
+
+export default { createAnswer, addToItin }

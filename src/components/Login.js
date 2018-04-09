@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+// import { LoginForm } from 'grommet'
 let baseURL = 'http://localhost:3000'
 
 class Login extends Component {
@@ -40,13 +41,13 @@ class Login extends Component {
   render() {
     // console.log(this.props) this.props.history gets a list of different functions useful for redirection
     return(
-      <div className="box2">
+      <div>
         <form id="formLogin" onSubmit={this.loginCheck}>
-          <div>
+          <div className="emailInput">
             <label for="email" className="calisto">email: </label>
               <input name="email" id="email" type="email" required/>
           </div>
-          <div>
+          <div className="passInput">
             <label for="password" className="calisto">password: </label>
               <input name="password" id="password" type="password" required/>
           </div>
@@ -59,5 +60,6 @@ class Login extends Component {
     )
   }
 }
+
 
 export default Login

@@ -4,7 +4,88 @@
   margin-right: auto;
   margin-left: auto;
 }
+@media (min-width: 320px) and (max-width: 430px) {
+  /* header.js */
+  .headerButt {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+  }
+  .grommetux-anchor__icon {
+    height: auto;
+  }
+  /* login.js */
+  .emailInput, .passInput{
+    width: 70%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
+  /* results.js */
+  .topHalf{
+    width: 100%;
+    height: 80vh;
+    background-color: pink;
+  }
+  .typeAndName {
+    margin-left: 5%;
+  }
+  .typeAndName h4{
+    font-family: 'Hind Madurai', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+    padding-top: 4%;
+    margin-bottom: 1%;
+  }
+  .typeAndName h2{
+    margin-bottom: 4%;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.2em;
+    letter-spacing: 1px;
+  }
+  .placeholderImg {
+    width: 100%;
+    height: 60%;
+    background-color: white;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .placeholderImg img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  .grommetux-control-icon-form-subtract {
+    padding-top: 1.5%;
+    stroke: red;
+  }
+  .placeDesc{
+    font-family: 'Hind Madurai', sans-serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-left: 5%;
+  }
+  .placeDesc h4{
+    margin-bottom: 2%;
+  }
+  .bottomHalf{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 13vh;
+  }
+
+
+
+}
 /* searchBAr.js */
 .location_icon {
   margin-right: 8px;
@@ -77,7 +158,7 @@
   padding: 1% 3%;
 }
 /* results.js */
-.right-half {
+/* .right-half {
   width: 50%;
   height: 100%;
   background-color: #E3F0FF;
@@ -116,4 +197,4 @@
   margin-bottom: .5%;
   font-weight: 400;
   font-size: 1.6em;
-}
+} */

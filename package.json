@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "grommet": "https://github.com/grommet/grommet/tarball/NEXT-stable",
+    "grommet-icons": "https://github.com/grommet/grommet-icons/tarball/stable",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "react-places-autocomplete": "^6.1.3",
