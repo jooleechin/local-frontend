@@ -5,10 +5,21 @@ import { PasswordInput, FormField, TextInput, Button } from 'grommet'
 let baseURL = 'http://localhost:3000'
 
 class Login extends Component {
+  state = {
+    email: '',
+    password: ''
+  }
+  handleEmailChange = (e) => {
+    this.setState({email: e.target.value})
+  }
+  handlePasswordChange = (e) => {
+    this.setState({password: e.target.value})
+  }
+
   loginCheck = (e) => {
     e.preventDefault()
-    let email = e.target.email.value
-    let password = e.target.password.value
+    let email = this.state.email
+    let password = this.state.password
     axios.post(`${baseURL}/login`, { email, password })
     .then (data => {
       let id = data.data.matches.id
@@ -46,13 +57,13 @@ class Login extends Component {
         <form id="formLogin" onSubmit={this.loginCheck}>
           <div className="title"><p>local</p></div>
           <div className="emailInput">
-            <FormField label='Email' className="tl" >
-              <TextInput name="email"/>
+            <FormField label='Email' className="tl" onChange={this.handleEmailChange}>
+              <TextInput name="email" type="email"  required />
             </FormField>
           </div>
           <div className="passInput">
             <FormField label='Password'className="tl" >
-              <PasswordInput value='password' name="password" required/>
+              <PasswordInput ref="password" name="password" onChange={this.handlePasswordChange} required/>
             </FormField>
           </div>
           <Button label='log in'

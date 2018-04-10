@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import googleAPI from '../util/googleAPI'
 import localAPI from '../util/localAPI'
 import placeHolderIMG from '../assests/onion.jpg'
+import { Link } from 'react-router-dom'
 import { FormSubtractIcon, LocationPinIcon, ScheduleIcon, StarIcon, NextIcon } from 'grommet'
 
 class Results extends Component {
@@ -32,6 +33,7 @@ class Results extends Component {
     googleAPI.getPlaceID(this.state.place_ID[this.state.choiceIndex])
     .then((result) => {
       let data = result.data.result
+      console.log('1st apicall', data)
       let place = {
         name: data.name,
         address: data.formatted_address,
@@ -43,24 +45,23 @@ class Results extends Component {
         rating: data.rating,
         reviews: JSON.stringify(data.reviews)
       }
-      console.log('place', place)
       localAPI.addToItin(place)
-      .then((place) => {
-        console.log('api call', place)
-        let place_id = place.id
-        console.log('placeid', place_id)
+      .then((resPlace) => {
+        let place_id = resPlace.place[0].id
         let itinPlace = {
           itin_id: this.props.itin_id,
           places_id: place_id,
-          order: this.state.order+1
+          order: this.state.order
         }
+        console.log('inserteditinPlace', itinPlace)
         localAPI.addToItinPlaceJoin(itinPlace)
+        .then((res) => {
+          console.log('3rd apicall', res.data)
+        })
       })
       .catch(err => {
         console.log(err)
       })
-
-
     })
   )
 
@@ -75,11 +76,14 @@ class Results extends Component {
     this.setState({choiceIndex: this.state.choiceIndex+1})
   }
 
+  goToItin = () => {
+    this.props.history.push('/itin')
+  }
+
   componentDidMount() {
     let arrOfCalls = this.state.interests.map(ele => {
       return googleAPI.getPlace(this.props.lat_stay, this.props.lng_stay, this.props.radius, ele, this.props.q2_money)
     })
-    console.log(arrOfCalls)
     Promise.all(arrOfCalls)
     .then(responses => {
       //console.log('responses', responses)
@@ -89,7 +93,7 @@ class Results extends Component {
         return [...arr, ...res.data.results]
       }, [])
       // console.log('final flat data', data)
-      console.log(data)
+      // console.log(data)
       let photosPromises = data.map((data) => {
         if (data.photos === undefined ) return {}
         return googleAPI.getPhoto(data.photos[0].photo_reference)
@@ -97,7 +101,6 @@ class Results extends Component {
       let placeid = data.map((data) => {
         return data.place_id
       })
-      console.log('photoprom', photosPromises)
       return Promise.all(photosPromises)
       .then(responses => {
         let photoUrls = responses.map(response => {
@@ -139,11 +142,9 @@ class Results extends Component {
     //   })
     //   // this.listOfChoices(data)
     // })
-
   }
 
   render() {
-    // console.log('state', this.state)
     let item = this.state.choices[this.state.choiceIndex]
     console.log('choice', item)
     item = item || {}
@@ -157,21 +158,28 @@ class Results extends Component {
         <div className="topHalf" onClick={() => this.showMore(placeID)}>
           <div className="typeAndName tl">
             <h4>restaurant</h4>
-            <h2>{name}the moonshine</h2>
+            <h2>{name}</h2>
           </div>
-          <div className='placeholderImg'><img src={placeHolderIMG} alt={photoUrl}/></div>
+          <div className='placeholderImg'><img src={photoUrl} alt={photoUrl}/></div>
           <div className="placeDesc tl">
             <FormSubtractIcon />
-            <h4>{formatted_address}400 12th Ave E Seattle, WA 98102</h4>
-            <h4>{rating}3</h4>
+            <h4>{formatted_address}</h4>
+            <h4>{rating}</h4>
             <h4>$$</h4>
           </div>
         </div>
         <div className="bottomHalf">
-          <button onClick={this.addToItin}>
+          <button onClick = {() => {
+                this.setState({order: this.state.order+1})
+                this.addToItin()
+              }
+            }>
             <LocationPinIcon />
           </button>
-          <button><ScheduleIcon path={{path: '/itin'}}/></button>
+
+          <Link to='/itin'><button>
+            <ScheduleIcon />
+          </button></Link>
           <button onClick={this.selectNextChoice}><NextIcon /></button>
         </div>
       </div>

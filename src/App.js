@@ -10,6 +10,7 @@ import Quiz03 from './components/Quiz_03_Money'
 import Quiz04 from './components/Quiz_04_Transport'
 import Quiz05 from './components/Quiz_05_Time'
 import Quiz06 from './components/Quiz_06_Interest'
+import Quiz07 from './components/Quiz_07_MakeItin'
 import Results from './components/Results'
 import Itin from './components/Itin'
 
@@ -29,7 +30,9 @@ class App extends Component {
       q4_interests: [],
       place_ID: '',
       query: '',
-      itin_id: 0
+      itin_id: 0,
+      date: '',
+      itinName: ''
     }
   }
 
@@ -99,6 +102,11 @@ class App extends Component {
               itin_id={this.state.itin_id}
               query={this.state.query} {...props} />
           )} />
+          <Route path="/quiz07" render={props => (
+            <Quiz07
+              user_id={this.state.user_id}
+              saveQuiz={this.saveQuiz} {...props} />
+          )} />
           <Route path="/main" render={props => (
             <Results
               first={this.state.first}
@@ -116,17 +124,7 @@ class App extends Component {
           )} />
           <Route path="/itin" render={props => (
             <Itin
-              first={this.state.first}
-              lat_stay={this.state.lat_stay}
-              lng_stay={this.state.lng_stay}
-              destination={this.state.destination}
-              radius={this.state.radius}
-              q1_transport={this.state.q1_transport}
-              q2_money={this.state.q2_money}
-              q3_time={this.state.q3_time}
-              q4_interests={this.state.q4_interests}
-              user_id={this.state.user_id}
-              query={this.state.query} {...props} />
+              date={this.state.date} {...props} />
           )} />
         </div>
       </BrowserRouter>

@@ -69,7 +69,7 @@ class Quiz_06_Interest extends Component {
       q4_interests: this.props.q4_interests.toString()
     }
     localAPI.createAnswer(newAnswer)
-    this.props.history.push('/main')
+    this.props.history.push('/quiz07')
   }
 
   render() {
