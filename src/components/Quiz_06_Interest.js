@@ -29,8 +29,11 @@ class Quiz_06_Interest extends Component {
     // interests.push(e.target.dataset.answer)
     // console.log(interests)
     let unique = interests.filter(this.removeDup)
-    this.props.saveQuiz({q4_interests: unique})
-    }
+    this.props.saveQuiz({
+      q4_interests: unique,
+      itin_id: this.props.itin_id+1
+    })
+  }
 
   radiusCalc = (transport) => {
     switch (transport) {

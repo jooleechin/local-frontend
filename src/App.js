@@ -28,7 +28,8 @@ class App extends Component {
       q3_time: [],
       q4_interests: [],
       place_ID: '',
-      query: ''
+      query: '',
+      itin_id: 0
     }
   }
 
@@ -68,7 +69,7 @@ class App extends Component {
             <Signup saveUser={this.saveUser} {...props} />
           )} />
           <Route path="/quiz01" render={props => (
-            <Quiz01 saveQuiz={this.saveQuiz} user_id={this.state.user_id} {...props} />
+            <Quiz01 itin_id={this.state.itin_id} saveQuiz={this.saveQuiz} user_id={this.state.user_id} {...props} />
           )} />
           <Route path="/quiz02" render={props => (
             <Quiz02 saveQuiz={this.saveQuiz} {...props} />
@@ -95,6 +96,7 @@ class App extends Component {
               q4_interests={this.state.q4_interests}
               user_id={this.state.user_id}
               saveQuiz={this.saveQuiz}
+              itin_id={this.state.itin_id}
               query={this.state.query} {...props} />
           )} />
           <Route path="/main" render={props => (
@@ -109,6 +111,7 @@ class App extends Component {
               q3_time={this.state.q3_time}
               q4_interests={this.state.q4_interests}
               user_id={this.state.user_id}
+              itin_id={this.state.itin_id}
               query={this.state.query} {...props} />
           )} />
           <Route path="/itin" render={props => (

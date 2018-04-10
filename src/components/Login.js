@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-// import { LoginForm } from 'grommet'
+import { PasswordInput, FormField, TextInput, Button } from 'grommet'
 let baseURL = 'http://localhost:3000'
 
 class Login extends Component {
@@ -22,12 +22,13 @@ class Login extends Component {
         this.props.saveQuiz({
           lat_stay: '47.6221999',
           lng_stay: '-122.3163333',
-          radius: '10000',
+          radius: '5000',
           destination: 'seattle, wa',
-          q1_transport: 'car',
+          q1_transport: 'walking',
           q2_money: 2,
           q3_time: 'morning',
-          q4_interests: ['shopping_mall', 'cafe']
+          q4_interests: ['cafe'],
+          itin_id: 1
         })
         this.props.history.push('/main')
         // just for test
@@ -41,19 +42,25 @@ class Login extends Component {
   render() {
     // console.log(this.props) this.props.history gets a list of different functions useful for redirection
     return(
-      <div>
+      <div className="login">
         <form id="formLogin" onSubmit={this.loginCheck}>
+          <div className="title"><p>local</p></div>
           <div className="emailInput">
-            <label for="email" className="calisto">email: </label>
-              <input name="email" id="email" type="email" required/>
+            <FormField label='Email' className="tl" >
+              <TextInput name="email"/>
+            </FormField>
           </div>
           <div className="passInput">
-            <label for="password" className="calisto">password: </label>
-              <input name="password" id="password" type="password" required/>
+            <FormField label='Password'className="tl" >
+              <PasswordInput value='password' name="password" required/>
+            </FormField>
           </div>
-          <div className="submitOcreate">
-            <input type="submit" value="login" id="submit" className="calisto grow" />
-          </div>
+          <Button label='log in'
+            id="loginButt"
+            onClick={this.loginCheck}
+            primary={false}
+            secondary={false}
+            type='submit' />
         </form>
         <Link to="/signup"><h3 className="grow tc create">create a new account!</h3></Link>
       </div>

@@ -17,20 +17,54 @@
     height: auto;
   }
   /* login.js */
-  .emailInput, .passInput{
-    width: 70%;
-    height: auto;
+  .login{
+    font-family: 'Roboto', sans-serif;
+  }
+  .grommetux-form-field {
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
+  }
+  .grommetux-form-field__label{
+    color: black;
+  }
+  .grommetux-password-input__input {
+    border: none;
+  }
+  .grommetux-text-input{
+    width: 100%;
+    border: none;
+  }
+  #formLogin {
+    padding-top: 20%;
+  }
+  .title{
+    padding-bottom: 5%;
+    font-size: 3.3em;
+    letter-spacing: 3px;
+    font-family: 'Cardo', serif;
+
+    font-weight: 400;
+  }
+  .passInput{
+    padding-bottom: 7%;
+  }
+  #loginButt{
+    width: 90%;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
   }
 
   /* results.js */
   .topHalf{
     width: 100%;
-    height: 80vh;
+    max-height: 80vh;
     background-color: pink;
   }
   .typeAndName {
+    width: 100%;
+    height: 14vh;
     margin-left: 5%;
   }
   .typeAndName h4{
@@ -51,7 +85,7 @@
   }
   .placeholderImg {
     width: 100%;
-    height: 60%;
+    height: 50vh;
     background-color: white;
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
@@ -65,21 +99,24 @@
     stroke: red;
   }
   .placeDesc{
-    font-family: 'Hind Madurai', sans-serif;
-    font-weight: 600;
+    width: 100%;
+    height: 20vh;
     letter-spacing: 2px;
     margin-left: 5%;
   }
   .placeDesc h4{
-    margin-bottom: 2%;
+    font-family: 'Hind Madurai', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 1%;
   }
+
   .bottomHalf{
     width: 100%;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    margin-top: auto;
-    margin-bottom: auto;
+    vertical-align: middle;
     height: 13vh;
   }
 
@@ -129,7 +166,7 @@
   outline: none;
 }
 /* login.js */
-.box2 {
+/* .box2 {
   width: 60%;
   margin-left: auto;
   margin-right: auto;
@@ -138,7 +175,7 @@
 #formLogin label{
   font-family: 'Playfair Display', serif;
   font-weight: 400;
-}
+} */
 
 /* q1_destination */
 .QandA {

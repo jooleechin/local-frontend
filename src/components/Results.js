@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import googleAPI from '../util/googleAPI'
 import localAPI from '../util/localAPI'
+import placeHolderIMG from '../assests/onion.jpg'
 import { FormSubtractIcon, LocationPinIcon, ScheduleIcon, StarIcon, NextIcon } from 'grommet'
 
 class Results extends Component {
@@ -12,7 +13,7 @@ class Results extends Component {
     photoUrls: [],
     interests: this.props.q4_interests,
     place_ID: '',
-
+    order: 0
   }
 
   listOfChoices = (choices, photoUrls, placeid) => {
@@ -28,10 +29,39 @@ class Results extends Component {
   }
 
   addToItin = () => (
-    let place = {
+    googleAPI.getPlaceID(this.state.place_ID[this.state.choiceIndex])
+    .then((result) => {
+      let data = result.data.result
+      let place = {
+        name: data.name,
+        address: data.formatted_address,
+        lat: data.geometry.location.lat,
+        long: data.geometry.location.lng,
+        phone: data.formatted_phone_number,
+        hours: JSON.stringify(data.opening_hours.weekday_text),
+        photo: JSON.stringify(data.photos),
+        rating: data.rating,
+        reviews: JSON.stringify(data.reviews)
+      }
+      console.log('place', place)
+      localAPI.addToItin(place)
+      .then((place) => {
+        console.log('api call', place)
+        let place_id = place.id
+        console.log('placeid', place_id)
+        let itinPlace = {
+          itin_id: this.props.itin_id,
+          places_id: place_id,
+          order: this.state.order+1
+        }
+        localAPI.addToItinPlaceJoin(itinPlace)
+      })
+      .catch(err => {
+        console.log(err)
+      })
 
-    }
-    localAPI.addToItin(place)
+
+    })
   )
 
   showMore = (placeID) => (
@@ -49,6 +79,7 @@ class Results extends Component {
     let arrOfCalls = this.state.interests.map(ele => {
       return googleAPI.getPlace(this.props.lat_stay, this.props.lng_stay, this.props.radius, ele, this.props.q2_money)
     })
+    console.log(arrOfCalls)
     Promise.all(arrOfCalls)
     .then(responses => {
       //console.log('responses', responses)
@@ -76,7 +107,6 @@ class Results extends Component {
         })
         this.listOfChoices(data, photoUrls, placeid)
       })
-      // this.listOfChoices(data)
     })
 
     // let call1 = googleAPI.getPlace(this.props.lat_stay, this.props.lng_stay, this.props.radius, this.props.q4_interests, this.props.q2_money)
@@ -127,21 +157,21 @@ class Results extends Component {
         <div className="topHalf" onClick={() => this.showMore(placeID)}>
           <div className="typeAndName tl">
             <h4>restaurant</h4>
-            <h2>{name}</h2>
+            <h2>{name}the moonshine</h2>
           </div>
-          <div className='placeholderImg'><img src={photoUrl} alt={photoUrl}/></div>
+          <div className='placeholderImg'><img src={placeHolderIMG} alt={photoUrl}/></div>
           <div className="placeDesc tl">
             <FormSubtractIcon />
-            <div className='address'><h4>{formatted_address}</h4></div>
-            <div className="rating">{rating}</div>
-            <div className="price_level"><h4>$$</h4></div>
+            <h4>{formatted_address}400 12th Ave E Seattle, WA 98102</h4>
+            <h4>{rating}3</h4>
+            <h4>$$</h4>
           </div>
         </div>
         <div className="bottomHalf">
           <button onClick={this.addToItin}>
             <LocationPinIcon />
           </button>
-          <button><ScheduleIcon /></button>
+          <button><ScheduleIcon path={{path: '/itin'}}/></button>
           <button onClick={this.selectNextChoice}><NextIcon /></button>
         </div>
       </div>

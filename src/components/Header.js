@@ -14,7 +14,7 @@ class Header extends Component {
   render() {
     return(
       <div className='headerButt'>
-        <Anchor icon={<SearchIcon />} href='#' primary={false} reverse={true} />
+        <Anchor icon={<SearchIcon />} path={{path: '/quiz01'}} primary={false} reverse={true} />
         <Menu responsive={false} icon={<UserIcon />} inline={false} primary={false}>
           <Anchor>
             hi, {this.props.name}
