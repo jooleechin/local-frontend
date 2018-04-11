@@ -25,7 +25,7 @@ class Quiz_01_Destination extends Component {
               placeholder='Search cities...'
               options={{types: ['(cities)']}}
             />
-          <input type="submit" value="next" id="submit" />
+          <input type="submit" value="next" id="submit" className="submit" />
         </form>
       </div>
     )

@@ -10,24 +10,20 @@ class Quiz_05_Time extends Component {
     let unique = timeSlot.filter(this.removeDup)
     this.props.saveQuiz({q3_time: unique})
   }
-  //
-  // saveQuiz = () => {
-  //   this.props.saveQuiz({q3_time: this.state.unique})
-  // }
 
   render() {
     return(
       <div>
         <div className="QandA">
-          <h2 className="question">when do you want an itinerary for?<br />(you can choose more than one option)</h2>
-          <div className="choices">
-            <span onClick={this.saveAnswer} data-answer='morning'>morning</span>
-            <span onClick={this.saveAnswer} data-answer='afternoon'>afternoon</span>
-            <span onClick={this.saveAnswer} data-answer='evening'>evening</span>
-            <span onClick={this.saveAnswer} data-answer='all_day'>all day</span>
+          <h2 className="question">when do you want an itinerary for? select all that apply.</h2>
+          <div className="choices" id="choices3">
+            <span onClick={this.saveAnswer} className="top2" data-answer='morning'>morning</span>
+            <span onClick={this.saveAnswer} className="top2" data-answer='afternoon'>afternoon</span>
+            <span onClick={this.saveAnswer} className="bottom2" data-answer='evening'>evening</span>
+            <span onClick={this.saveAnswer} className="bottom2" data-answer='all_day'>all day</span>
           </div>
         </div>
-        <Link to="/quiz06"><div className="next" >next</div></Link>
+        <Link to="/quiz06" style={{ textDecoration: 'none' }}><div className="next submit" >next</div></Link>
       </div>
     )
   }

@@ -30,20 +30,20 @@ class Login extends Component {
       if (data.data.matches) {
         this.props.saveUser(id, first, last, email, phone)
         // just for test
-        this.props.saveQuiz({
-          lat_stay: '47.6221999',
-          lng_stay: '-122.3163333',
-          radius: '5000',
-          destination: 'seattle, wa',
-          q1_transport: 'walking',
-          q2_money: 2,
-          q3_time: 'morning',
-          q4_interests: ['cafe'],
-          itin_id: 1
-        })
-        this.props.history.push('/main')
+        // this.props.saveQuiz({
+        //   lat_stay: '47.6221999',
+        //   lng_stay: '-122.3163333',
+        //   radius: '5000',
+        //   destination: 'seattle, wa',
+        //   q1_transport: 'walking',
+        //   q2_money: 2,
+        //   q3_time: 'morning',
+        //   q4_interests: ['cafe'],
+        //   itin_id: 1
+        // })
+        // this.props.history.push('/main')
         // just for test
-        // this.props.history.push('/quiz01')
+        this.props.history.push('/quiz01')
       } else {
         alert('Your password is not correct!')
       }
@@ -68,6 +68,7 @@ class Login extends Component {
           </div>
           <Button label='log in'
             id="loginButt"
+            className="submit"
             onClick={this.loginCheck}
             primary={false}
             secondary={false}

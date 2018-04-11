@@ -11,14 +11,14 @@ class Quiz_04_Transport extends Component {
       <div>
         <div className="QandA">
           <h2 className="question">what is your method of transportation?</h2>
-          <div className="choices">
-            <span onClick={this.saveAnswer} data-answer='car'>car</span>
-            <span onClick={this.saveAnswer} data-answer='public_transit'>public transit</span>
-            <span onClick={this.saveAnswer} data-answer='rideshare'>rideshare</span>
-            <span onClick={this.saveAnswer} data-answer='walking'>walking</span>
+          <div className="choices" id="choices2">
+            <span onClick={this.saveAnswer} className="top2"data-answer='car'>car</span>
+            <span onClick={this.saveAnswer} className="top2"data-answer='public_transit'>public transit</span>
+            <span onClick={this.saveAnswer} className="bottom2" data-answer='rideshare'>rideshare</span>
+            <span onClick={this.saveAnswer} className="bottom2" data-answer='walking'>walking</span>
           </div>
         </div>
-        <Link to="/quiz05"><div className="next">next</div></Link>
+        <Link to="/quiz05" style={{ textDecoration: 'none' }}><div className="next submit">next</div></Link>
       </div>
     )
   }

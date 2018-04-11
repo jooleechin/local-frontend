@@ -10,15 +10,15 @@ class Quiz_03_Money extends Component {
     return(
       <div>
         <div className="QandA">
-          <h2 className="question">how much money do you want spend on this trip?</h2>
-          <div className="choices">
-            <span onClick={this.saveAnswer} data-answer='1'>$</span>
+          <h2 className="question">how much money do you want to spend on this trip?</h2>
+          <div className="choices" id="q3choices">
+            <span onClick={this.saveAnswer} className="pointer" data-answer='1'>$</span>
             <span onClick={this.saveAnswer} data-answer='2'>$$</span>
             <span onClick={this.saveAnswer} data-answer='3'>$$$</span>
             <span onClick={this.saveAnswer} data-answer='4'>$$$$</span>
           </div>
         </div>
-        <Link to="/quiz04"><div className="next">next</div></Link>
+        <Link to="/quiz04" style={{ textDecoration: 'none' }}><div className="next submit">next</div></Link>
       </div>
     )
   }

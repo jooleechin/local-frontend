@@ -26,12 +26,9 @@ class Quiz_06_Interest extends Component {
     if (e.target.dataset.answer === 'night_out') {
       interests = [...interests, 'bar', 'night_club', 'casino']
     }
-    // interests.push(e.target.dataset.answer)
-    // console.log(interests)
     let unique = interests.filter(this.removeDup)
     this.props.saveQuiz({
-      q4_interests: unique,
-      itin_id: this.props.itin_id+1
+      q4_interests: unique
     })
   }
 
@@ -55,8 +52,8 @@ class Quiz_06_Interest extends Component {
   }
 
   submit = (e)  => {
-    this.radiusCalc(this.props.q1_transport)
     e.preventDefault()
+    this.radiusCalc(this.props.q1_transport)
     let newAnswer = {
       user_id: this.props.user_id,
       destination: this.props.destination,
@@ -76,16 +73,16 @@ class Quiz_06_Interest extends Component {
     return(
       <div>
         <form className="QandA" onSubmit={this.submit}>
-          <label for="question" className="question">what are your interests?<br />(you can choose more than one option)</label>
-          <div className="choices">
-            <span onClick={this.saveAnswer} data-answer='nature'>nature</span>
-            <span onClick={this.saveAnswer} data-answer='coffee'>coffee</span>
-            <span onClick={this.saveAnswer} data-answer='shopping'>shopping</span>
-            <span onClick={this.saveAnswer} data-answer='food'>food</span>
-            <span onClick={this.saveAnswer} data-answer='museum'>museum</span>
-            <span onClick={this.saveAnswer} data-answer='night_out'>night out</span>
+          <label for="question" className="question">what are your interests? select all that apply</label>
+          <div className="choices" id="q6choices">
+            <span onClick={this.saveAnswer} className="top2" data-answer='nature'>nature</span>
+            <span onClick={this.saveAnswer} className="top2" data-answer='coffee'>coffee</span>
+            <span onClick={this.saveAnswer} className="top2" data-answer='shopping'>shopping</span>
+            <span onClick={this.saveAnswer} className="top2" data-answer='food'>food</span>
+            <span onClick={this.saveAnswer} className="bottom2" data-answer='museum'>museum</span>
+            <span onClick={this.saveAnswer} className="bottom2" data-answer='night_out'>night out</span>
           </div>
-          <input type="submit" value="submit" id="submit" />
+          <input type="submit" value="next" className="submit"/>
         </form>
 
       </div>

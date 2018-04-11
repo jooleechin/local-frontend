@@ -19,7 +19,10 @@ class Header extends Component {
             hi, {this.props.name}
           </Anchor>
           <Anchor path={{path: '/login'}}>
-            my account
+            login
+          </Anchor>
+          <Anchor path={{path: '/'}} onClick={this.props.clearUser}>
+            logout
           </Anchor>
         </Menu>
       </div>

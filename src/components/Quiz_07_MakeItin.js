@@ -13,16 +13,22 @@ class Quiz_07_MakeItin extends Component {
   }
   saveItinData = (e) => {
     e.preventDefault()
-    this.props.saveQuiz({
-      date: this.state.date,
-      itinName: this.state.itinName
-    })
     let newItin = {
       name: this.state.itinName,
       user_id: this.props.user_id,
       itin_date: this.state.date
     }
     localAPI.createItin(newItin)
+    .then((res) => {
+      console.log('result.data',res.data.itin[0])
+      let itin_id = res.data.itin[0].id
+      console.log('itin_id',itin_id)
+      this.props.saveQuiz({
+        date: this.state.date,
+        itinName: this.state.itinName,
+        itin_id: itin_id
+      })
+    })
     this.props.history.push('/main')
   }
   handleDateChange = (e) => {

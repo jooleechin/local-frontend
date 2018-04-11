@@ -104,6 +104,7 @@ class App extends Component {
           )} />
           <Route path="/quiz07" render={props => (
             <Quiz07
+              itin_id={this.state.itin_id}
               user_id={this.state.user_id}
               saveQuiz={this.saveQuiz} {...props} />
           )} />
