@@ -64,7 +64,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Header id={this.state.id} name={this.state.first} clearUser={this.clearUser} />
+          <Header user_id={this.state.user_id} name={this.state.first} clearUser={this.clearUser} />
           <Route path="/login" render={props => (
             <Login saveUser={this.saveUser} clearUser={this.clearUser} saveQuiz={this.saveQuiz} {...props} />
           )} />
@@ -124,6 +124,8 @@ class App extends Component {
           )} />
           <Route path="/itin" render={props => (
             <Itin
+              user_id={this.state.user_id}
+              itin_id={this.state.itin_id}
               date={this.state.date} {...props} />
           )} />
         </div>

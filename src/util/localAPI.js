@@ -44,7 +44,7 @@ function getCurrentItin(itin_id, user_id) {
 }
 
 function createItin(newItin) {
-  return axios.get(`${baseURL}/itins`, newItin)
+  return axios.post(`${baseURL}/itins`, newItin)
   .then((res) => {
     console.log(res)
     return res

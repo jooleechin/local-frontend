@@ -1,6 +1,5 @@
 
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
 import localAPI from '../util/localAPI'
 import { Form, FormField, DateTime, TextInput, Button } from 'grommet'
 
