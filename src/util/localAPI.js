@@ -54,5 +54,16 @@ function createItin(newItin) {
   })
 }
 
+function getAllItinByUser(user_id) {
+  return axios.get(`${baseURL}/itins/user/${user_id}`)
+  .then((res) => {
+    console.log(res)
+    return res.data
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
 
-export default { createAnswer, addToItin, addToItinPlaceJoin, getCurrentItin, createItin }
+
+export default { createAnswer, addToItin, addToItinPlaceJoin, getCurrentItin, createItin, getAllItinByUser }

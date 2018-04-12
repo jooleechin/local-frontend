@@ -265,79 +265,108 @@
     vertical-align: middle;
     height: 13vh;
   }
+  /* itin.js */
+  .itinBox {
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .itinTitle {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 2.0em;
+    width: 50%;
+    margin-left: 50%;
+  }
+  .itinContent{
+    margin-top: 5%;
+  }
+  .buttTitle{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    margin-top: 3%;
+  }
+  .buttTitle button{
+    margin-left: 25%;
+  }
+  .timeOfDay{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.3em;
+    letter-spacing: 1.5px;
+  }
+  .activity{
+    margin-top: 5%;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-wrap: nowrap;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 15px;
+  }
+  .activityImg{
+    width: 20%;
+    height: 25%;
+    border-radius: 15px;
+  }
+  .activityImg img{
+    border-radius: 15px;
+  }
+  .activityDesc{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+  }
+  .activityDesc div{
+    padding-bottom: 2%;
+  }
 
-
-
+  /* viewall.js */
+  .tableTitle{
+    margin-top: 5%;
+    letter-spacing: 2px;
+    color: white;
+    display: inline-block;
+    background-color: #4153AF;
+    padding: 1% 2%;
+    margin-bottom: 5%;
+  }
+  .tableTitle h2 {
+    margin-bottom: 0;
+  }
+  table {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  thead{
+    width: 100%;
+    height: 10%;
+  }
+  /* tbody tr:nth-child(odd){
+    background-color: var(--light-gray);
+  } */
+  th {
+    letter-spacing: 1px;
+    width: 27%;
+    font-size: 1.2em;
+  }
+  thead th{
+    text-transform: lowercase;
+  }
+  thead {
+    margin-bottom: 15px;
+  }
+  td {
+    font-size: 1.1em;
+    height: auto;
+    letter-spacing: 1px;
+    padding-top: 3%;
+    padding-bottom: 3%;
+  }
 }
-/* searchBAr.js */
-
-/* login.js */
-/* .box2 {
-  width: 60%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#formLogin label{
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
-} */
-
-/* q1_destination */
-/* .QandA {
-  margin-top: 8%;
-}
-.question {
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
-  font-size: 3.3em;
-}
-#submit {
-  font-family: 'Hind Madurai', sans-serif;
-  font-weight: 500;
-  font-size: 1.5em;
-  margin-top: 3%;
-  border-radius: 25px;
-  padding: 1% 3%;
-} */
-/* results.js */
-/* .right-half {
-  width: 50%;
-  height: 100%;
-  background-color: #E3F0FF;
-  float: right;
-}
-
-.placeholderImg{
-  position: relative;
-  width: 100%;
-  height: 70vh;
-  background-color: #526c6d;
-  display: block;
-}
-
-.placeDesc{
-  padding: 1% 2%;
-  height: auto;
-  background-color: #E3F0FF;
-  position: absolute;
-  bottom: 10%;
-  letter-spacing: 2px;
-}
-
-.placeDesc h3{
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  margin: 0;
-  font-size: 2.8em;
-  margin-bottom: 2%;
-}
-
-.placeDesc h4{
-  font-family: 'Hind Madurai', sans-serif;
-  font-weight: 400;
-  margin: 0;
-  margin-bottom: .5%;
-  font-weight: 400;
-  font-size: 1.6em;
-} */

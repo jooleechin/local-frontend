@@ -1,7 +1,9 @@
 
 import React, { Component } from 'react'
 import localAPI from '../util/localAPI'
-import { Form, FormField, DateTime, TextInput, Button } from 'grommet'
+import DateTime from 'grommet/components/DateTime'
+import Form from 'grommet/components/Form'
+import { FormField, TextInput, Button } from 'grommet'
 
 class Quiz_07_MakeItin extends Component {
   state = {
@@ -16,7 +18,8 @@ class Quiz_07_MakeItin extends Component {
     let newItin = {
       name: this.state.itinName,
       user_id: this.props.user_id,
-      itin_date: this.state.date
+      itin_date: this.state.date,
+      destination: this.props.destination
     }
     localAPI.createItin(newItin)
     .then((res) => {

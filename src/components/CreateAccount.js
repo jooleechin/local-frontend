@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { PasswordInput, FormField, TextInput, Button } from 'grommet'
+import PasswordInput from '../../node_modules/grommet/components/PasswordInput'
+import { FormField, TextInput, Button } from 'grommet'
 let baseURL = `http://localhost:3000`
 
 class CreateAccount extends Component {

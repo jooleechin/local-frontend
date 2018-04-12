@@ -13,6 +13,7 @@ import Quiz06 from './components/Quiz_06_Interest'
 import Quiz07 from './components/Quiz_07_MakeItin'
 import Results from './components/Results'
 import Itin from './components/Itin'
+import AllItinView from './components/AllItinView'
 
 class App extends Component {
   constructor(props) {
@@ -29,13 +30,14 @@ class App extends Component {
       q3_time: [],
       q4_interests: [],
       place_ID: '',
-      query: '',
       itin_id: 0,
       date: '',
-      itinName: ''
+      itinName: '',
+      choices: [],
+      choiceIndex: 0
+
     }
   }
-
   saveUser = (user_id, first, last, email, phone) => {
     this.setState({
       user_id: user_id,
@@ -64,7 +66,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Header user_id={this.state.user_id} name={this.state.first} clearUser={this.clearUser} />
+          <Header user_id={this.state.user_id} name={this.state.first} clearUser={this.clearUser}/>
           <Route path="/login" render={props => (
             <Login saveUser={this.saveUser} clearUser={this.clearUser} saveQuiz={this.saveQuiz} {...props} />
           )} />
@@ -99,14 +101,14 @@ class App extends Component {
               q4_interests={this.state.q4_interests}
               user_id={this.state.user_id}
               saveQuiz={this.saveQuiz}
-              itin_id={this.state.itin_id}
-              query={this.state.query} {...props} />
+              itin_id={this.state.itin_id} {...props} />
           )} />
           <Route path="/quiz07" render={props => (
             <Quiz07
               itin_id={this.state.itin_id}
               user_id={this.state.user_id}
-              saveQuiz={this.saveQuiz} {...props} />
+              saveQuiz={this.saveQuiz}
+              destination={this.state.destination} {...props} />
           )} />
           <Route path="/main" render={props => (
             <Results
@@ -120,14 +122,26 @@ class App extends Component {
               q3_time={this.state.q3_time}
               q4_interests={this.state.q4_interests}
               user_id={this.state.user_id}
-              itin_id={this.state.itin_id}
-              query={this.state.query} {...props} />
+              choices={this.state.choices}
+              choiceIndex={this.state.choiceIndex}
+              place_ID={this.state.place_ID}
+              saveQuiz={this.saveQuiz}
+              itin_id={this.state.itin_id} {...props} />
           )} />
           <Route path="/itin" render={props => (
             <Itin
+              time={this.props.q3_time}
+              date={this.state.date}
+              destination={this.state.destination}
               user_id={this.state.user_id}
               itin_id={this.state.itin_id}
               date={this.state.date} {...props} />
+          )} />
+          <Route path="/viewall" render={props => (
+            <AllItinView
+              itin_id={this.state.itin_id}
+              saveQuiz={this.saveQuiz}
+              user_id={this.state.user_id} {...props} />
           )} />
         </div>
       </BrowserRouter>

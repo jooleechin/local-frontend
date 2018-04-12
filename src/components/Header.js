@@ -1,29 +1,29 @@
 
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, Anchor, UserIcon, SearchIcon } from 'grommet'
+import Menu from '../../node_modules/grommet/components/Menu'
+import { User, Search } from 'grommet-icons'
 
 class Header extends Component {
   changeToLogout() {
-    let user_id = this.props.user_id
-    return user_id
-      ?<Link to='/'><Anchor onClick={this.props.clearUser}className="signLog tracked pointer tr">logout</Anchor></Link>
-      :<Link to="/Login"><Anchor className="signLog tracked pointer tr" >login</Anchor></Link>
+    return this.props.user_id
+      ?<Link to='/'><div onClick={this.props.clearUser}className="signLog tracked pointer tr">logout</div></Link>
+      :<Link to="/Login"><div className="signLog tracked pointer tr" >login</div></Link>
   }
   render() {
     return(
       <div className='headerButt'>
-        <Anchor icon={<SearchIcon />} path={{path: '/quiz01'}} primary={false} reverse={true} />
-        <Menu responsive={false} icon={<UserIcon />} inline={false} primary={false}>
-          <Anchor>
+        <Link to='/quiz01'><Search onClick={this.goToQuiz}/></ Link>
+        <Menu responsive={false} icon={<User />} inline={false} primary={false}>
+          <div>
             hi, {this.props.name}
-          </Anchor>
-          <Anchor path={{path: '/login'}}>
+          </div>
+          <Link to='/login'><div>
             login
-          </Anchor>
-          <Anchor path={{path: '/'}} onClick={this.props.clearUser}>
+          </div></ Link>
+          <div onClick={this.props.clearUser}>
             logout
-          </Anchor>
+          </div>
         </Menu>
       </div>
     )

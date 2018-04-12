@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 import googleAPI from '../util/googleAPI'
 import localAPI from '../util/localAPI'
 import placeHolderIMG from '../assests/onion.jpg'
-import { Link } from 'react-router-dom'
-import { FormSubtractIcon, LocationPinIcon, ScheduleIcon, StarIcon, NextIcon } from 'grommet'
-
+import { Link, Route } from 'react-router-dom'
+import { FormAdd, FormSchedule, FormNextLink, Subtract } from 'grommet-icons'
+import Itin from './Itin'
 class Results extends Component {
   state = {
     choices: [],
@@ -80,7 +80,7 @@ class Results extends Component {
     this.props.history.push('/itin')
   }
 
-  componentDidMount() {
+  fetchChoices = () => {
     let arrOfCalls = this.state.interests.map(ele => {
       return googleAPI.getPlace(this.props.lat_stay, this.props.lng_stay, this.props.radius, ele, this.props.q2_money)
     })
@@ -111,37 +111,25 @@ class Results extends Component {
         this.listOfChoices(data, photoUrls, placeid)
       })
     })
+  }
 
-    // let call1 = googleAPI.getPlace(this.props.lat_stay, this.props.lng_stay, this.props.radius, this.props.q4_interests, this.props.q2_money)
+  componentDidMount() {
+    if (this.props.choices.length > 0) {
+      return this.setState({
+        choices: this.props.choices,
+        choiceIndex: this.props.choiceIndex,
+        place_ID: this.props.place_ID
+      })
+    }
+    this.fetchChoices()
+  }
 
-    // let call2 = googleAPI.getPlace(this.props.lat_stay, this.props.lng_stay, this.props.radius, 'restaurant', 'italian')
-    //
-    // Promise.all([call1, call2])
-    // .then(responses => {
-    //   //console.log('responses', responses)
-    //   let data = responses.reduce((arr, res) => {
-    //     //console.log('response', res)
-    //     //console.log('results', res.data.results)
-    //     return [...arr, ...res.data.results]
-    //   }, [])
-    //   // console.log('final flat data', data)
-    //   console.log(data)
-    //   let photosPromises = data.map((data) => {
-    //     return googleAPI.getPhoto(data.photos[0].photo_reference)
-    //   })
-    //   return Promise.all(photosPromises)
-    //   .then(responses => {
-    //     /*if (!responses || !responses[0] || !responses[0].data) {
-    //       return
-    //     }*/
-    //     let photoUrls = responses.map(response => {
-    //       let host = 'https://lh4.googleusercontent.com'
-    //       return host + response.data.path
-    //     })
-    //     this.listOfChoices(data, photoUrls)
-    //   })
-    //   // this.listOfChoices(data)
-    // })
+  componentWillUnmount() {
+    this.props.saveQuiz({
+      choices: this.state.choices,
+      choiceIndex: this.state.choiceIndex,
+      place_ID: this.state.place_ID
+    })
   }
 
   render() {
@@ -162,7 +150,7 @@ class Results extends Component {
           </div>
           <div className='placeholderImg'><img src={photoUrl} alt={photoUrl}/></div>
           <div className="placeDesc tl">
-            <FormSubtractIcon />
+            <Subtract />
             <h4>{formatted_address}</h4>
             <h4>{rating}</h4>
             <h4>$$</h4>
@@ -174,13 +162,10 @@ class Results extends Component {
                 this.addToItin()
               }
             }>
-            <LocationPinIcon />
+            <FormAdd />
           </button>
-
-          <Link to='/itin'><button>
-            <ScheduleIcon />
-          </button></Link>
-          <button onClick={this.selectNextChoice}><NextIcon /></button>
+          <button onClick={this.goToItin}><FormSchedule /></button>
+          <button onClick={this.selectNextChoice}><FormNextLink /></button>
         </div>
       </div>
     )

@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { PasswordInput, FormField, TextInput, Button } from 'grommet'
+import PasswordInput from 'grommet/components/PasswordInput'
+import FormField from 'grommet/components/FormField'
+import TextInput from 'grommet/components/TextInput'
+import Button from 'grommet/components/Button'
 let baseURL = 'http://localhost:3000'
 
 class Login extends Component {
@@ -33,17 +36,20 @@ class Login extends Component {
         // this.props.saveQuiz({
         //   lat_stay: '47.6221999',
         //   lng_stay: '-122.3163333',
-        //   radius: '5000',
+        //   radius: '1000',
         //   destination: 'seattle, wa',
         //   q1_transport: 'walking',
         //   q2_money: 2,
         //   q3_time: 'morning',
+        //   date: '04/01/2018',
         //   q4_interests: ['cafe'],
-        //   itin_id: 1
+        //   itin_id: 10,
+        //   itinName: 'testing itin'
         // })
         // this.props.history.push('/main')
+        this.props.history.push('/viewall')
         // just for test
-        this.props.history.push('/quiz01')
+        // this.props.history.push('/quiz01')
       } else {
         alert('Your password is not correct!')
       }
