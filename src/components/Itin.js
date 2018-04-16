@@ -1,18 +1,31 @@
 
 import React, { Component } from 'react'
 import localAPI from '../util/localAPI'
-import { FormPreviousLink, Trash } from 'grommet-icons'
+import { FormPreviousLink, Edit } from 'grommet-icons'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 import placeHolderIMG from '../assests/onion.jpg'
 import Image from 'grommet/components/Image'
+import TrashButton from './TrashButton'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 const moment = require('moment')
 
 class Itin extends Component {
-  state = {
-    allActivity: [],
-    time: "",
-    date: '',
-    destination: ''
+  constructor(props) {
+    super(props)
+    this.state = {
+      allActivity: [],
+      time: "",
+      date: '',
+      destination: '',
+      editIsHidden: true,
+      itin_id: 0
+    }
+    this.toggleEditHidden = this.toggleEditHidden.bind(this)
+  }
+  toggleEditHidden () {
+    this.setState(prevState => ({
+      editIsHidden: !prevState.editIsHidden
+    }))
   }
   goBack = () => {
     this.props.history.push('/main')
@@ -73,6 +86,7 @@ class Itin extends Component {
         let split = res.destination.split(',')
         let newDest = split[0]
         this.setState({
+          itin_id: res.itin_id,
           time: res.q3_time,
           destination: newDest
         })
@@ -90,8 +104,13 @@ class Itin extends Component {
             <span>itinerary for <span className="titleKey">{this.state.date}</span> in <span className="titleKey">{this.state.destination}</span></span>
           </div>
         </div>
-        {this.newTimeOfDay()}
-        
+        <div className="itineraryBox">
+          <button className="itinEditButt" onClick={this.toggleEditHidden}><Edit />
+
+          </button>
+          {this.newTimeOfDay()}
+        </div>
+        <TrashButton itin_id={this.state.itin_id}/>
       </div>
     )
   }

@@ -17,7 +17,6 @@ class DetailView extends Component {
   }
 
   componentDidMount() {
-    debugger
     let googlePlace_ID = this.props.history.location.state.googlePlace_ID
     googleAPI.getPlaceID(googlePlace_ID)
     .then((res) => {

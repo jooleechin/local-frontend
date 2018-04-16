@@ -85,5 +85,26 @@ function getQuestions(user_id) {
   })
 }
 
+function deleteItin(itin_id) {
+  return axios.delete(`${baseURL}/itins/${itin_id}`)
+  .then ((res) => {
+    console.log(res)
+    return res
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
 
-export default { createAnswer, addToItin, addToItinPlaceJoin, getCurrentItin, createItin, getAllItinByUser, getActivity, getQuestions }
+
+export default {
+  createAnswer,
+  addToItin,
+  addToItinPlaceJoin,
+  getCurrentItin,
+  createItin,
+  getAllItinByUser,
+  getActivity,
+  getQuestions,
+  deleteItin
+}

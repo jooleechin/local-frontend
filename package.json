@@ -12,6 +12,7 @@
     "moment": "^2.22.0",
     "pure-react-carousel": "^1.11.1",
     "react": "^16.3.0",
+    "react-beautiful-dnd": "^7.0.1",
     "react-burger-menu": "^2.4.2",
     "react-dom": "^16.3.0",
     "react-places-autocomplete": "^6.1.3",
