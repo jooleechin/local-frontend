@@ -1,9 +1,7 @@
 
 import React, { Component } from 'react'
 import localAPI from '../util/localAPI'
-import { FormView } from 'grommet-icons'
 const moment = require('moment')
-
 
 class AllItinView extends Component {
   constructor(props) {
@@ -20,7 +18,6 @@ class AllItinView extends Component {
     this.props.history.push('/itin')
   }
 
-
   newRow = () => {
     return this.state.allItins.map(itin => {
       let itinId = itin.id
@@ -29,7 +26,7 @@ class AllItinView extends Component {
         destination: itin.destination,
         itin_date: moment(itin.itin_date).format('l')
       }
-      let tdElements = Object.keys(itin).map(key => <td data-id={itinId} >{itin[key]}</td>)
+      let tdElements = Object.keys(itin).map(key => <td className="tc" data-id={itinId} >{itin[key]}</td>)
       return <tr data-id={itinId} onClick={this.viewItin} className="calisto stripe-dark">{tdElements}</tr>
     })
   }
@@ -51,9 +48,9 @@ class AllItinView extends Component {
         <table className="f6 w-100 mw8 center">
         <thead>
           <tr className='avenir fw4'>
-            <th className="fw6 pa3 bg-white">Name</th>
-            <th className="fw6 pa3 bg-white">city</th>
-            <th className="fw6 pa3 bg-white">Date</th>
+            <th className="fw6 pa3 bg-white tc">Name</th>
+            <th className="fw6 pa3 bg-white tc">city</th>
+            <th className="fw6 pa3 bg-white tc">Date</th>
           </tr>
         </thead>
         <tbody className="striped--near-white:nth-child(odd) lh-copy">

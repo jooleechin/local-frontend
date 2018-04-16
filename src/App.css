@@ -11,13 +11,94 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    border-bottom: 1px solid black;
+    height: auto;
   }
   .grommetux-anchor--reverse .grommetux-control-icon{
     margin-left: 0;
   }
   .grommetux-anchor__icon {
     height: auto;
+  }
+  /* Splashpage */
+  #splashpage{
+    height: 100vh;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
+/*
+  .backgroundImage{
+    width: 100vw;
+    height: 100vh;
+    z-index: -333;
+    background: url('assests/splash.jpg') no-repeat 30% 50% fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+  } */
+
+  .titles {
+    height: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    vertical-align: middle;
+    z-index: 99;
+  }
+  .appTitle{
+    font-size: 3.5em;
+    font-family: 'Cardo', serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+  .loginSignupButts{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    bottom: 5%;
+  }
+  .loginSignupButts button{
+    letter-spacing: 1px;
+    width: 100%;
+    margin-top: 3%;
+    border: 1px solid black;
+    background-color: white;
+  }
+  /* createAccount */
+  .createAccountBox{
+    margin-top: 25%;
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .createAccountBox h3{
+    padding-top: 10%;
+    font-size: 1.3em;
+    letter-spacing: 2px;
+    padding-bottom: 16%;
+
+  }
+  #loginButt{
+    border: none;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    letter-spacing: 2px;
+    margin-top: 5%;
+    border-radius: 8px;
+    font-size: 1.2em;
+    padding: 3%;
+    background-color: #4153AF;
+    color: white;
+  }
+  #input{
+    padding: 1.5em;
   }
   /* login.js */
   .login{
@@ -28,6 +109,7 @@
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+    border: none;
   }
   .grommetux-form-field__label{
     color: black;
@@ -40,41 +122,29 @@
     border: none;
   }
   #formLogin {
-    padding-top: 20%;
+    margin-top: 20%;
   }
   .title{
     padding-bottom: 5%;
-    font-size: 3.3em;
-    letter-spacing: 3px;
-    font-family: 'Cardo', serif;
-    font-weight: 400;
-  }
-  .passInput{
-    padding-bottom: 7%;
-  }
-  #loginButt{
-    width: 90%;
-    border: none;
-    margin-top: 3%;
-    margin-bottom: 5%;
-  }
-  .create {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
+    font-size: 2.8em;
+    letter-spacing: 10px;
   }
 
   /* quizzes */
+  .formBox{
+    margin-top: 20%;
+  }
+  .formBox .grommetux-form-field__label {
+    font-size: 1.0em;
+  }
   .QandA{
     margin-top: 30%;
   }
   .question{
-    /* font-family: 'Poppins', sans-serif;
-    font-weight: 300; */
     font-family: 'Cardo', serif;
     font-weight: 400;
     font-size: 1.8em;
   }
-
   .submit{
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
@@ -86,6 +156,14 @@
     padding: 2%;
     background-color: #4153AF;
     color: white;
+  }
+  #loginButt1{
+    height: 10%;
+    border-radius: 0px;
+    width: 100%;
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
   }
 
   #PlacesAutocomplete__root{
@@ -203,15 +281,22 @@
   }
 
   /* results.js */
-  .topHalf{
+  .right-half{
+    max-height: 100%;
     width: 100%;
-    max-height: 80vh;
-    background-color: pink;
+  }
+  .topHalf{
+    padding-top: 15%;
+    max-width: 100%;
+    height: 90vh;
+    /* background-color: pink; */
   }
   .typeAndName {
-    width: 100%;
+    width: 90%;
     height: 14vh;
-    margin-left: 5%;
+    /* margin-left: 5%; */
+    margin-left: auto;
+    margin-right: auto;
   }
   .typeAndName h4{
     font-family: 'Hind Madurai', sans-serif;
@@ -219,7 +304,7 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     width: 100%;
-    padding-top: 4%;
+    /* padding-top: 13%; */
     margin-bottom: 1%;
   }
   .typeAndName h2{
@@ -230,31 +315,46 @@
     letter-spacing: 1px;
   }
   .placeholderImg {
-    width: 100%;
-    height: 50vh;
-    background-color: white;
-    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* width: 100%;
+    height: auto;
+    /* background-color: white; */
+    /* box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 17%; */ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
   }
   .placeholderImg img {
-    max-width: 100%;
+    /* max-width: 100%;
     max-height: 100%;
-    object-fit: contain;
+    object-fit: contain; */
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
   }
   .grommetux-control-icon-form-subtract {
     padding-top: 1.5%;
     stroke: red;
   }
   .placeDesc{
-    width: 100%;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
     height: 20vh;
-    letter-spacing: 2px;
-    margin-left: 5%;
+    letter-spacing: 1px;
+    /* margin-left: 5%; */
   }
-  .placeDesc h4{
+  .placeDesc span{
     font-family: 'Hind Madurai', sans-serif;
     font-weight: 400;
     margin: 0;
     margin-bottom: 1%;
+    font-weight: bold;
+    font-size: 1.3em;
+  }
+  .adddress {
+    line-height: 1.0;
   }
 
   .bottomHalf{
@@ -263,7 +363,8 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     vertical-align: middle;
-    height: 13vh;
+    height: 10vh;
+    border-top: 1px solid black;
   }
   /* itin.js */
   .itinBox {
@@ -275,9 +376,9 @@
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     letter-spacing: 2px;
-    font-size: 2.0em;
-    width: 50%;
-    margin-left: 50%;
+    font-size: 1.8em;
+    width: 60%;
+    margin-left: 30%;
   }
   .itinContent{
     margin-top: 5%;
@@ -288,9 +389,6 @@
     justify-content: flex-end;
     margin-top: 3%;
   }
-  .buttTitle button{
-    margin-left: 25%;
-  }
   .timeOfDay{
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
@@ -298,32 +396,43 @@
     letter-spacing: 1.5px;
   }
   .activity{
-    margin-top: 5%;
+    margin-top: 3%;
     width: 100%;
     height: 20%;
     display: flex;
     flex-wrap: nowrap;
     border: 1px solid rgba(0,0,0,.15);
-    border-radius: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px rgba(0,0,0,0.2);
   }
   .activityImg{
-    width: 20%;
-    height: 25%;
-    border-radius: 15px;
+    width: 40%;
   }
   .activityImg img{
-    border-radius: 15px;
+    border-radius: 5px;
   }
   .activityDesc{
     width: 80%;
     margin-left: 10%;
     margin-top: auto;
     margin-bottom: auto;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cardo', serif;
     font-weight: 400;
+    font-size: .9em;
+    letter-spacing: 0px;
+  }
+  .activityDesc .name {
+    font-weight: 700;
+  }
+  .activityDesc .distance{
+    font-size: .7em;
+    color: rgba(0,0,0,.55);
   }
   .activityDesc div{
     padding-bottom: 2%;
+  }
+  .titleKey{
+    color: #4153AF;
   }
 
   /* viewall.js */
@@ -369,4 +478,39 @@
     padding-top: 3%;
     padding-bottom: 3%;
   }
+  /* detailView */
+  .detailView {
+    margin-top: 15%;
+  }
+  /* detailImage.js */
+  .carousel{
+    position: relative;
+    border-bottom: 1px solid black;
+  }
+  .butts {
+    width: 100%;
+    top: 50%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+  }
+  .oneButt{
+    color: white;
+  }
+  .nameRatingInfo {
+    border-bottom: 1px solid black;
+  }
+  /* Reviews.js */
+  .reviewDate{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  .person {
+    margin-bottom: 2%;
+  }
+  .review {
+    border-bottom: 1px solid black;
+  }
+
 }

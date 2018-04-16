@@ -12,7 +12,7 @@ class Quiz_04_Transport extends Component {
         <div className="QandA">
           <h2 className="question">what is your method of transportation?</h2>
           <div className="choices" id="choices2">
-            <span onClick={this.saveAnswer} className="top2"data-answer='car'>car</span>
+            <span onClick={this.saveAnswer} className="top2" data-answer='car'>car</span>
             <span onClick={this.saveAnswer} className="top2"data-answer='public_transit'>public transit</span>
             <span onClick={this.saveAnswer} className="bottom2" data-answer='rideshare'>rideshare</span>
             <span onClick={this.saveAnswer} className="bottom2" data-answer='walking'>walking</span>

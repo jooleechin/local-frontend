@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import PasswordInput from '../../node_modules/grommet/components/PasswordInput'
-import { FormField, TextInput, Button } from 'grommet'
+import { label, TextInput, Button } from 'grommet'
+import { LinkNext } from 'grommet-icons'
 let baseURL = `http://localhost:3000`
 
 class CreateAccount extends Component {
@@ -9,7 +9,6 @@ class CreateAccount extends Component {
     first: '',
     last: '',
     email: '',
-    phone: '',
     password: ''
   }
 
@@ -22,9 +21,6 @@ class CreateAccount extends Component {
   handleEmailChange = (e) => {
     this.setState({email: e.target.value})
   }
-  handlePhoneChange = (e) => {
-    this.setState({phone: e.target.value})
-  }
   handlePasswordChange = (e) => {
     this.setState({password: e.target.value})
   }
@@ -33,53 +29,51 @@ class CreateAccount extends Component {
     let first = this.state.first
     let last = this.state.last
     let email = this.state.email
-    let phone = this.state.phone
     let password = this.state.password
-    axios.post(`${baseURL}/signup`, { first, last, email, phone, password })
+    axios.post(`${baseURL}/signup`, { first, last, email, password })
     .then (data => {
       let user_id = data.data[0].id
-      this.props.saveUser(user_id, first, last, email, phone)
+      this.props.saveUser(user_id, first, last, email)
       this.props.history.push('/quiz01')
     })
     .catch(e => console.log(e))
   }
 
   render() {
+    const theme = {
+      icon: {
+        color: 'white'
+      }
+    }
     return(
-      <div className="box2">
+      <div className="createAccountBox">
+        <div><h3 className="avenir b">CREATE YOUR ACCOUNT</h3></div>
         <form id="createForm" onSubmit={this.createCheck}>
-          <div className="emailInput">
-            <FormField label='First Name:' className="tl" onChange={this.handleFirstChange}>
-              <TextInput name="first" type="text"  required />
-            </FormField>
+          <div className="field">
+            <label className="label tl" ></label>
+            <div className="control">
+              <input className="input" id="input" name="first" type="text" onChange={this.handleFirstChange} placeholder='First name' required />
+            </div>
           </div>
-          <div className="emailInput">
-            <FormField label='Last Name:' className="tl" onChange={this.handleLastChange}>
-              <TextInput name="last" type="text"  required />
-            </FormField>
+          <div className="field">
+            <label className="label tl" ></label>
+            <div className="control">
+              <input className="input" id="input" name="last" type="text" onChange={this.handleLastChange} placeholder='Last name' required />
+            </div>
           </div>
-          <div className="emailInput">
-            <FormField label='Email' className="tl" onChange={this.handleEmailChange}>
-              <TextInput name="email" type="email"  required />
-            </FormField>
+          <div className="field">
+            <label className="label tl" ></label>
+            <div className="control">
+              <input className="input" id="input" name="email" type="email" onChange={this.handleEmailChange} placeholder='Email' required />
+            </div>
           </div>
-          <div className="emailInput">
-            <FormField label='Phone:' className="tl" onChange={this.handlePhoneChange}>
-              <TextInput name="phone" type="tel"  required />
-            </FormField>
+          <div className="field">
+            <label className="label tl"></label>
+            <div className="control">
+              <input ref="password" id="input" className="input" type="password" name="password" placeholder='Password' onChange={this.handlePasswordChange} required/>
+            </div>
           </div>
-          <div className="passInput">
-            <FormField label='Password'className="tl" >
-              <PasswordInput ref="password" name="password" onChange={this.handlePasswordChange} required/>
-            </FormField>
-          </div>
-          <Button label='log in'
-            id="loginButt"
-            className="submit"
-            onClick={this.createCheck}
-            primary={false}
-            secondary={false}
-            type='submit' />
+          <button id="loginButt1" className="w-100 b ttu avenir submit" onClick={this.createCheck} type='submit'><LinkNext theme={theme}/></button>
         </form>
       </div>
     )

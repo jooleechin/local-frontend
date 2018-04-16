@@ -35,8 +35,7 @@ function addToItinPlaceJoin(itinPlace) {
 function getCurrentItin(itin_id, user_id) {
   return axios.get(`${baseURL}/itins/${itin_id}/user/${user_id}`)
     .then ((res) => {
-      console.log(res)
-      return res.data
+      return res.data.allPlaces
     })
     .catch((err) => {
       console.log(err)
@@ -65,5 +64,26 @@ function getAllItinByUser(user_id) {
   })
 }
 
+function getActivity(itin_id) {
+  return axios.get(`${baseURL}/questions/itin/${itin_id}`)
+  .then((res) => {
+    return res.data.one
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
 
-export default { createAnswer, addToItin, addToItinPlaceJoin, getCurrentItin, createItin, getAllItinByUser }
+function getQuestions(user_id) {
+  return axios.get(`${baseURL}/questions/users/${user_id}`)
+  .then((res) => {
+    console.log(res.data.one)
+    return res.data.one
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
+
+export default { createAnswer, addToItin, addToItinPlaceJoin, getCurrentItin, createItin, getAllItinByUser, getActivity, getQuestions }

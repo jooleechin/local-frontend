@@ -5,7 +5,10 @@ import PasswordInput from 'grommet/components/PasswordInput'
 import FormField from 'grommet/components/FormField'
 import TextInput from 'grommet/components/TextInput'
 import Button from 'grommet/components/Button'
+import localAPI from '../util/localAPI'
+import {User, Lock, LinkNext } from 'grommet-icons'
 let baseURL = 'http://localhost:3000'
+
 
 class Login extends Component {
   state = {
@@ -30,8 +33,9 @@ class Login extends Component {
       let last = data.data.matches.last
       let email = data.data.matches.email
       let phone = data.data.matches.phone
+      console.log(data, 'data')
       if (data.data.matches) {
-        this.props.saveUser(id, first, last, email, phone)
+        this.props.saveUser(id, first, last, email)
         // just for test
         // this.props.saveQuiz({
         //   lat_stay: '47.6221999',
@@ -43,13 +47,12 @@ class Login extends Component {
         //   q3_time: 'morning',
         //   date: '04/01/2018',
         //   q4_interests: ['cafe'],
-        //   itin_id: 10,
+        //   itin_id: 1,
         //   itinName: 'testing itin'
         // })
         // this.props.history.push('/main')
-        this.props.history.push('/viewall')
         // just for test
-        // this.props.history.push('/quiz01')
+        this.props.history.push('/viewall')
       } else {
         alert('Your password is not correct!')
       }
@@ -57,30 +60,32 @@ class Login extends Component {
     .catch(e => console.log(e))
   }
   render() {
+    const theme = {
+      icon: {
+        color: 'white'
+      }
+    }
     // console.log(this.props) this.props.history gets a list of different functions useful for redirection
     return(
       <div className="login">
         <form id="formLogin" onSubmit={this.loginCheck}>
-          <div className="title"><p>local</p></div>
-          <div className="emailInput">
-            <FormField label='Email' className="tl" onChange={this.handleEmailChange}>
-              <TextInput name="email" type="email"  required />
-            </FormField>
+          <div className="title avenir b pt4"><p>LOGIN</p></div>
+          <div className="loginInput">
+            <div className="emailInput">
+              <FormField className="tl" onChange={this.handleEmailChange}>
+                <TextInput name="email" type="email" placeholder="Email" required />
+              </FormField>
+            </div>
+            <div className="passInput">
+              <FormField className="tl">
+                <PasswordInput ref="password" name="password" placeholder="Password" onChange={this.handlePasswordChange} required/>
+              </FormField>
+            </div>
           </div>
-          <div className="passInput">
-            <FormField label='Password'className="tl" >
-              <PasswordInput ref="password" name="password" onChange={this.handlePasswordChange} required/>
-            </FormField>
-          </div>
-          <Button label='log in'
-            id="loginButt"
-            className="submit"
-            onClick={this.loginCheck}
-            primary={false}
-            secondary={false}
-            type='submit' />
+          <button id="loginButt1" className="submit" onClick={this.loginCheck} type='submit'>
+            <LinkNext theme={theme} />
+          </button>
         </form>
-        <Link to="/signup"><h3 className="grow tc create">create a new account!</h3></Link>
       </div>
     )
   }

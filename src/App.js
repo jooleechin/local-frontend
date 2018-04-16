@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, withRouter } from 'react-router-dom'
 import './App.css';
 import Header from './components/Header'
 import Login from './components/Login'
+import Splashpage from './components/Splashpage'
 import Signup from './components/CreateAccount'
 import Quiz01 from './components/Quiz_01_Destination'
 import Quiz02 from './components/Quiz_02_Stay'
@@ -14,6 +15,7 @@ import Quiz07 from './components/Quiz_07_MakeItin'
 import Results from './components/Results'
 import Itin from './components/Itin'
 import AllItinView from './components/AllItinView'
+import DetailView from './components/DetailView'
 
 class App extends Component {
   constructor(props) {
@@ -34,17 +36,17 @@ class App extends Component {
       date: '',
       itinName: '',
       choices: [],
-      choiceIndex: 0
-
+      choiceIndex: 0,
+      googlePlace_ID: '',
+      photoUrls: []
     }
   }
-  saveUser = (user_id, first, last, email, phone) => {
+  saveUser = (user_id, first, last, email) => {
     this.setState({
       user_id: user_id,
       first: first,
       last: last,
-      email: email,
-      phone: phone
+      email: email
     })
   }
 
@@ -56,19 +58,43 @@ class App extends Component {
     this.setState({
       user_id: 0,
       first: '',
-      last: '',
+      lat_stay: '',
+      lng_stay: '',
+      radius: '',
+      destination: '',
+      q1_transport: '',
+      q2_money: 0,
+      q3_time: [],
+      q4_interests: [],
+      place_ID: '',
+      itin_id: 0,
+      date: '',
+      itinName: '',
+      choices: [],
+      choiceIndex: 0,
       email: '',
-      phone: ''
+      last: ''
     })
   }
 
+  headerProps = (props) => {
+    return (
+      <Header saveQuiz={this.saveQuiz} user_id={this.state.user_id} last={this.state.last} email={this.state.email} name={this.state.first} clearUser={this.clearUser} {...props}/>
+    )
+  }
+
   render() {
+    const CustomHeader = withRouter(this.headerProps)
     return (
       <BrowserRouter>
         <div className="App">
-          <Header user_id={this.state.user_id} name={this.state.first} clearUser={this.clearUser}/>
+          <CustomHeader/>
           <Route path="/login" render={props => (
             <Login saveUser={this.saveUser} clearUser={this.clearUser} saveQuiz={this.saveQuiz} {...props} />
+          )} />
+          <Route exact path="/" render={props => (
+            <Splashpage
+              saveQuiz={this.saveQuiz} {...props} />
           )} />
           <Route path="/signup" render={props => (
             <Signup saveUser={this.saveUser} {...props} />
@@ -90,6 +116,12 @@ class App extends Component {
           )} />
           <Route path="/quiz06" render={props => (
             <Quiz06
+              q1_transport={this.state.q1_transport}
+              q4_interests={this.state.q4_interests}
+              saveQuiz={this.saveQuiz} {...props} />
+          )} />
+          <Route path="/quiz07" render={props => (
+            <Quiz07
               first={this.state.first}
               lat_stay={this.state.lat_stay}
               lng_stay={this.state.lng_stay}
@@ -102,13 +134,6 @@ class App extends Component {
               user_id={this.state.user_id}
               saveQuiz={this.saveQuiz}
               itin_id={this.state.itin_id} {...props} />
-          )} />
-          <Route path="/quiz07" render={props => (
-            <Quiz07
-              itin_id={this.state.itin_id}
-              user_id={this.state.user_id}
-              saveQuiz={this.saveQuiz}
-              destination={this.state.destination} {...props} />
           )} />
           <Route path="/main" render={props => (
             <Results
@@ -126,6 +151,7 @@ class App extends Component {
               choiceIndex={this.state.choiceIndex}
               place_ID={this.state.place_ID}
               saveQuiz={this.saveQuiz}
+              photoUrls={this.state.photoUrls}
               itin_id={this.state.itin_id} {...props} />
           )} />
           <Route path="/itin" render={props => (
@@ -133,12 +159,23 @@ class App extends Component {
               time={this.props.q3_time}
               date={this.state.date}
               destination={this.state.destination}
+              place_ID={this.state.place_ID}
+              choiceIndex={this.state.choiceIndex}
               user_id={this.state.user_id}
+              saveQuiz={this.state.saveQuiz}
               itin_id={this.state.itin_id}
+              q3_time={this.state.q3_time}
               date={this.state.date} {...props} />
           )} />
           <Route path="/viewall" render={props => (
             <AllItinView
+              itin_id={this.state.itin_id}
+              saveQuiz={this.saveQuiz}
+              user_id={this.state.user_id} {...props} />
+          )} />
+          <Route path="/detail" render={props => (
+            <DetailView
+              googlePlace_ID={this.state.googlePlace_ID}
               itin_id={this.state.itin_id}
               saveQuiz={this.saveQuiz}
               user_id={this.state.user_id} {...props} />

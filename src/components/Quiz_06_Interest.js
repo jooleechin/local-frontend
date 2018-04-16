@@ -54,18 +54,18 @@ class Quiz_06_Interest extends Component {
   submit = (e)  => {
     e.preventDefault()
     this.radiusCalc(this.props.q1_transport)
-    let newAnswer = {
-      user_id: this.props.user_id,
-      destination: this.props.destination,
-      lat_stay: this.props.lat_stay,
-      lng_stay: this.props.lng_stay,
-      radius: this.props.radius,
-      q1_transport: this.props.q1_transport,
-      q2_money: this.props.q2_money,
-      q3_time: this.props.q3_time.toString(),
-      q4_interests: this.props.q4_interests.toString()
-    }
-    localAPI.createAnswer(newAnswer)
+    // let newAnswer = {
+    //   user_id: this.props.user_id,
+    //   destination: this.props.destination,
+    //   lat_stay: this.props.lat_stay,
+    //   lng_stay: this.props.lng_stay,
+    //   radius: this.props.radius,
+    //   q1_transport: this.props.q1_transport,
+    //   q2_money: this.props.q2_money,
+    //   q3_time: this.props.q3_time.toString(),
+    //   q4_interests: this.props.q4_interests.toString()
+    // }
+    // localAPI.createAnswer(newAnswer)
     this.props.history.push('/quiz07')
   }
 
