@@ -38,7 +38,8 @@ class App extends Component {
       choices: [],
       choiceIndex: 0,
       googlePlace_ID: '',
-      photoUrls: []
+      photoUrls: [],
+      order: 0
     }
   }
   saveUser = (user_id, first, last, email) => {
@@ -152,6 +153,7 @@ class App extends Component {
               place_ID={this.state.place_ID}
               saveQuiz={this.saveQuiz}
               photoUrls={this.state.photoUrls}
+              order={this.state.order}
               itin_id={this.state.itin_id} {...props} />
           )} />
           <Route path="/itin" render={props => (

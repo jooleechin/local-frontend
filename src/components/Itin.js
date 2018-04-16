@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import localAPI from '../util/localAPI'
-import { FormPreviousLink, Edit } from 'grommet-icons'
+import { FormPreviousLink, Edit, FormClose } from 'grommet-icons'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 import placeHolderIMG from '../assests/onion.jpg'
 import Image from 'grommet/components/Image'
@@ -18,7 +18,7 @@ class Itin extends Component {
       date: '',
       destination: '',
       editIsHidden: true,
-      itin_id: 0
+      itin_id: 0,
     }
     this.toggleEditHidden = this.toggleEditHidden.bind(this)
   }
@@ -31,32 +31,44 @@ class Itin extends Component {
     this.props.history.push('/main')
   }
   showMore = (e) => {
-    debugger
-    console.log(this)
-    console.log(this.dataset)
+    console.log(e.target.dataset.answer)
     let googlePlace_ID = e.target.dataset.answer
     this.props.history.push({
       pathname: '/detail',
       state: { googlePlace_ID }
     })
   }
+  //deletedPlace.data.place.id
+  deletePlace = (e) => {
+    let place_ID = e.target.dataset.placeID
+    localAPI.deletePlace(place_ID).then(deletedPlace => {
+      debugger
+      let allActivity = this.state.allActivity.filter(place => place.places_id !== deletedPlace.data.place.id)
+      this.setState({allActivity})
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
 
   newActivity = () => {
     return this.state.allActivity.map(activity => (
-      <div className="activity" data-answer={activity.googlePlace_ID} onClick={this.showMore}>
-        <div className="activityImg" data-answer={activity.googlePlace_ID}>
+      <div className="activity" data-answer={activity.googlePlace_ID}>
+        {console.log(activity)}
+        <div className="activityImg" data-answer={activity.googlePlace_ID} onClick={this.showMore}>
           <Image src={activity.photoUrl}
             alt={activity.photoUrl}
             full={true}
             fit='contain'
             size='thumb'
             data-answer={activity.googlePlace_ID}
-             />
+            />
         </div>
-        <div className="activityDesc tl" data-answer={activity.googlePlace_ID}>
+        <div className="activityDesc tl" onClick={this.showMore}>
           <div className="name" data-answer={activity.googlePlace_ID}>{activity.places_name}</div>
           <div className="distance" data-answer={activity.googlePlace_ID}>distance: 5 mi</div>
         </div>
+        <button><FormClose onClick={this.deletePlace} data-placeID={activity.places_id}/></button>
       </div>
     ))
   }
@@ -97,6 +109,7 @@ class Itin extends Component {
     })
   }
   render() {
+    console.log('itin state', this.state)
     return(
       <div className="itinBox">
         <div className="buttTitle">
@@ -104,13 +117,10 @@ class Itin extends Component {
             <span>itinerary for <span className="titleKey">{this.state.date}</span> in <span className="titleKey">{this.state.destination}</span></span>
           </div>
         </div>
-        <div className="itineraryBox">
-          <button className="itinEditButt" onClick={this.toggleEditHidden}><Edit />
-
-          </button>
-          {this.newTimeOfDay()}
-        </div>
-        <TrashButton itin_id={this.state.itin_id}/>
+          <div className="itineraryBox">
+            {this.newTimeOfDay()}
+          </div>
+        <TrashButton itin_id={this.state.itin_id} history={this.props.history}/>
       </div>
     )
   }

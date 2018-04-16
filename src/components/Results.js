@@ -169,7 +169,8 @@ class Results extends Component {
         choices: this.props.choices,
         choiceIndex: this.props.choiceIndex,
         place_ID: this.props.place_ID,
-        photoUrls: this.props.photoUrls
+        photoUrls: this.props.photoUrls,
+        order: this.props.order
       })
     }
     this.fetchChoices()
@@ -179,7 +180,8 @@ class Results extends Component {
     this.props.saveQuiz({
       choices: this.state.choices,
       choiceIndex: this.state.choiceIndex,
-      place_ID: this.state.place_ID
+      place_ID: this.state.place_ID,
+      order: this.state.order
     })
   }
 
@@ -189,7 +191,6 @@ class Results extends Component {
     item = item || {}
     let placeID = this.state.place_ID[this.state.choiceIndex]
     let { name, formatted_address, types, price_level, rating, photoUrl } = item
-
     return(
       <div className="right-half">
         <div className="topHalf" onClick={() => this.showMore(placeID)}>

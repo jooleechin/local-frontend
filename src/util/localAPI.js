@@ -96,6 +96,17 @@ function deleteItin(itin_id) {
   })
 }
 
+function deletePlace(place_ID) {
+  return axios.delete(`${baseURL}/places/${place_ID}`)
+  .then ((res) => {
+    console.log(res)
+    return res
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
 
 export default {
   createAnswer,
@@ -106,5 +117,6 @@ export default {
   getAllItinByUser,
   getActivity,
   getQuestions,
-  deleteItin
+  deleteItin,
+  deletePlace
 }
