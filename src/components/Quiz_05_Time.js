@@ -14,7 +14,7 @@ class Quiz_05_Time extends Component {
   render() {
     return(
       <div>
-        <div className="QandA">
+        <div className="QandA marginTop">
           <h2 className="question">when do you want an itinerary for? select all that apply.</h2>
           <div className="choices" id="choices3">
             <span onClick={this.saveAnswer} className="top2" data-answer='morning'>morning</span>

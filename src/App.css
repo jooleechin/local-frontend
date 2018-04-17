@@ -15,6 +15,10 @@
     justify-content: space-between;
     height: auto;
   }
+  .menu a{
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
   .grommetux-anchor--reverse .grommetux-control-icon{
     margin-left: 0;
   }
@@ -102,10 +106,14 @@
   #input{
     padding: 1.5em;
   }
+  .marginTop {
+    padding-top: 17%;
+  }
   /* login.js */
   .login{
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
+    margin-top: 25%;
   }
   .grommetux-form-field {
     width: 90%;
@@ -161,11 +169,14 @@
   }
   #loginButt1{
     height: 10%;
-    border-radius: 0px;
     width: 100%;
     position: absolute;
     bottom: 0%;
     left: 0%;
+    background-color: #4153AF;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
   }
 
   #PlacesAutocomplete__root{
@@ -374,7 +385,7 @@
     margin-left: auto;
     margin-right: auto;
     height: 100%;
-    padding-bottom: 18%;
+    overflow-y: scroll;
   }
   .itinTitle {
     font-family: 'Poppins', sans-serif;
@@ -407,7 +418,7 @@
   }
   .activity{
     margin-top: 3%;
-    width: 100%;
+    width: 99%;
     height: 20%;
     display: flex;
     flex-wrap: nowrap;
@@ -456,6 +467,8 @@
   }
   .tableTitle h2 {
     margin-bottom: 0;
+    font-size: 1.4em;
+    font-weight: bold;
   }
   table {
     width: 100%;
@@ -488,9 +501,6 @@
     padding-bottom: 3%;
   }
   /* detailView */
-  .detailView {
-    margin-top: 15%;
-  }
   /* detailImage.js */
   .carousel{
     position: relative;

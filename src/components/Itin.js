@@ -46,6 +46,7 @@ class Itin extends Component {
       destination: '',
       editIsHidden: true,
       itin_id: 0,
+      stay_latlng: `${Number(this.props.lat_stay)},${Number(this.props.lng_stay)}`
     }
     this.toggleEditHidden = this.toggleEditHidden.bind(this)
     this.onDragEnd = this.onDragEnd.bind(this);
@@ -94,12 +95,22 @@ class Itin extends Component {
     })
   }
 
+  calcDistance = (lat, lng) => {
+    let secondCoord = `${Number(lat)},${Number(lng)}`
+    console.log(secondCoord)
+    // let distance = google.maps.geometry.spherical.computeDistanceBetween(this.state.stay_latlng, secondCoord)
+    // console.log(distance)
+    // return distance
+  }
+
   newActivity = () => {
-    return this.state.allActivity.map(activity => (
-      <Draggable key={activity.order} draggableId={activity.order}>
+    return this.state.allActivity.map((activity, index) => (
+      <Draggable key={activity.order} draggableId={activity.order} index={index}>
         {(provided, snapshot) => (
           <div
             ref={provided.innerRef}
+            {...provided.dragHandleProps}
+            {...provided.draggableProps}
             style={getItemStyle(
               provided.draggableProps.style,
               snapshot.isDragging
@@ -119,7 +130,7 @@ class Itin extends Component {
               </div>
               <div className="activityDesc tl" onClick={this.showMore}>
                 <div className="name" data-answer={activity.googlePlace_ID}>{activity.places_name}</div>
-                <div className="distance" data-answer={activity.googlePlace_ID}>distance: 5 mi</div>
+                <div className="distance" data-answer={activity.googlePlace_ID}>distance: {() => this.calcDistance(activity.lat, activity.lng)}</div>
               </div>
               <button><FormClose onClick={this.deletePlace} data-placeID={activity.places_id}/></button>
             </div>
@@ -180,7 +191,7 @@ class Itin extends Component {
     console.log('itin state', this.state)
     return(
       <DragDropContext onDragEnd={this.onDragEnd}>
-        <div className="itinBox">
+        <div className="itinBox marginTop">
           <div className="buttTitle">
             <div className="itinTitle tl">
               <span>itinerary for <span className="titleKey">{this.state.date}</span> in <span className="titleKey">{this.state.destination}</span></span>
@@ -189,7 +200,7 @@ class Itin extends Component {
           <div className="itineraryBox">
             {this.newTimeOfDay()}
           </div>
-          {/*<TrashButton itin_id={this.state.itin_id} history={this.props.history}/>*/}
+          <TrashButton itin_id={this.state.itin_id} history={this.props.history}/>
         </div>
       </ DragDropContext>
     )

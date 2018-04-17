@@ -5,6 +5,7 @@ import localAPI from '../util/localAPI'
 import placeHolderIMG from '../assests/onion.jpg'
 import { Link, Route } from 'react-router-dom'
 import { Add, Schedule, LinkNext, Subtract } from 'grommet-icons'
+import StarRatingComponent from 'react-star-rating-component';
 
 import Itin from './Itin'
 class Results extends Component {
@@ -202,7 +203,13 @@ class Results extends Component {
           <div className="placeDesc tl">
             <Subtract />
             <div><span className="adddress">{formatted_address}</span></div>
-            <div><span>{rating}</span></div>
+            <div>
+              <StarRatingComponent
+                name='rating'
+                starCount={5}
+                value={rating}
+              />
+            </div>
             <div><span>$$</span></div>
           </div>
         </div>

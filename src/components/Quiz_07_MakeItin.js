@@ -53,7 +53,7 @@ class Quiz_07_MakeItin extends Component {
   }
   render() {
     return(
-      <div>
+      <div className="marginTop">
         <Form className="formBox">
           <FormField className="question tl" label='Name of Itinerary:' onChange={this.handleItinNameChange}>
             <TextInput id="itinName"

@@ -32,7 +32,7 @@ class DetailView extends Component {
 
   render() {
     return(
-      <div className="detailView">
+      <div className="marginTop">
         <DetailImage googleID={this.state.googleID}/>
         <div className="nameRatingInfo tl">
           <div>{this.state.result.name}</div>

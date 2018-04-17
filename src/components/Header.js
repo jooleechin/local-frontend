@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { User, Search, LinkPrevious } from 'grommet-icons'
+import { User, Search, Previous } from 'grommet-icons'
 import { stack as Menu } from 'react-burger-menu'
 
 class Header extends Component {
@@ -57,78 +57,94 @@ class Header extends Component {
         width={260}
         styles={this.state.styles}
         isOpen={this.state.menuOpen}
-        className="avenir tl"
+        className="avenir tl menu"
         onStateChange={(state) => this.handleStateChange(state)}
       >
-        <a className="menu-item pt3 b">hi, {this.props.name}</a>
-        <Link to='/viewall'><a className="menu-item--small pt3">all itineraries</a></Link>
-        <Link to ='/quiz01'><a className="menu-item--small pt3">search a city</a></Link>
-        <a className="menu-item pt3" onClick={this.props.clearUser} href="/">logout</a>
+        <Link to=''><a className="menu-item bb b--white-70 b">hi, {this.props.name}</a></Link>
+        <Link to='/viewall'><a className="menu-item bb b--white-70">all itineraries</a></Link>
+        <Link to ='/quiz01'><a className="menu-item bb b--white-70">search a city</a></Link>
+        <Link to=''><a className="menu-item bb b--white-70" onClick={this.props.clearUser} href="/">logout</a></Link>
       </Menu>
       :<Menu right
         width={260}
         styles={this.state.styles}
         isOpen={this.state.menuOpen}
-        className="avenir tl"
+        className="avenir tl menu"
         onStateChange={(state) => this.handleStateChange(state)}
       >
-        <a className="menu-item pt3" href="/login">login</a>
+        <a className="menu-item bb b--white-70" href="/login">login</a>
       </Menu>
   }
 
   loginBack = (navi) => {
+    const style = {
+      position: 'fixed',
+      left: '25px',
+      top: '22px',
+      height: '15px',
+      width: '18px',
+      color: 'black'
+    }
     return this.props.user_id
       ?<div>
-        <Link to={navi}><LinkPrevious /></Link>
+        <Link to={navi} ><Previous style={style}/></Link>
         <Menu right
           width={260}
           styles={this.state.styles}
           isOpen={this.state.menuOpen}
-          className="avenir tl"
+          className="avenir tl menu"
           onStateChange={(state) => this.handleStateChange(state)}
         >
-          <a className="menu-item pt3" onClick={this.props.clearUser} href="/">logout</a>
+          <a className="menu-item bb b--white-70" onClick={this.props.clearUser} href="/">logout</a>
         </Menu>
       </div>
       :<div>
-        <Link to={navi}><LinkPrevious /></Link>
+        <Link to={navi}><Previous style={style}/></Link>
         <Menu right
           width={260}
           styles={this.state.styles}
           isOpen={this.state.menuOpen}
-          className="avenir tl"
+          className="avenir tl menu"
           onStateChange={(state) => this.handleStateChange(state)}
         >
-          <a className="menu-item pt3" href="/login">login</a>
+          <a className="menu-item bb b--white-70" href="/login">login</a>
         </Menu>
       </div>
     }
 
   backButt = (navi) => {
+    const style = {
+      position: 'fixed',
+      left: '25px',
+      top: '22px',
+      height: '15px',
+      width: '18px',
+      color: 'black'
+    }
     return this.props.user_id
       ?<div>
-        <Link to={navi}><LinkPrevious /></Link>
+        <Link to={navi}><Previous style={style}/></Link>
         <Menu right
           width={260}
           styles={this.state.styles}
           isOpen={this.state.menuOpen}
-          className="avenir tl"
+          className="avenir tl menu"
           onStateChange={(state) => this.handleStateChange(state)}
         >
-          <a className="menu-item pt3 b">hi, {this.props.name}</a>
-          <Link to='viewall'><a className="menu-item--small pt3">all itineraries</a></Link>
-          <Link to='/quiz01'><a className="menu-item--small pt3">search a city</a></Link>
-          <a className="menu-item pt3" onClick={this.props.clearUser} href="/">logout</a>
+          <Link to=''><a className="menu-item bb b--white-70 b">hi, {this.props.name}</a></Link>
+          <Link to='viewall'><a className="menu-item bb b--white-70">all itineraries</a></Link>
+          <Link to='/quiz01'><a className="menu-item bb b--white-70">search a city</a></Link>
+          <Link to=''><a className="menu-item bb b--white-70" onClick={this.props.clearUser} href="/">logout</a></Link>
         </Menu>
       </div>
       :<Menu right
         width={260}
         styles={this.state.styles}
         isOpen={this.state.menuOpen}
-        className="avenir tl"
+        className="avenir tl menu"
         onStateChange={(state) => this.handleStateChange(state)}
       >
-        <a className="menu-item pt3" href="/login">login</a>
+        <a className="menu-item bb b--white-70" href="/login">login</a>
       </Menu>
   }
 

@@ -71,7 +71,7 @@ class Quiz_06_Interest extends Component {
 
   render() {
     return(
-      <div>
+      <div className="marginTop">
         <form className="QandA" onSubmit={this.submit}>
           <label for="question" className="question">what are your interests? select all that apply</label>
           <div className="choices" id="q6choices">

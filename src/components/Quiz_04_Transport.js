@@ -9,7 +9,7 @@ class Quiz_04_Transport extends Component {
   render() {
     return(
       <div>
-        <div className="QandA">
+        <div className="QandA marginTop">
           <h2 className="question">what is your method of transportation?</h2>
           <div className="choices" id="choices2">
             <span onClick={this.saveAnswer} className="top2" data-answer='car'>car</span>

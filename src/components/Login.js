@@ -82,7 +82,7 @@ class Login extends Component {
               </FormField>
             </div>
           </div>
-          <button id="loginButt1" className="submit" onClick={this.loginCheck} type='submit'>
+          <button id="loginButt1" onClick={this.loginCheck} type='submit'>
             <LinkNext theme={theme} />
           </button>
         </form>

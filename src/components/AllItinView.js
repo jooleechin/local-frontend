@@ -43,7 +43,7 @@ class AllItinView extends Component {
 
   render() {
     return(
-      <div>
+      <div className="marginTop">
         <div className="tableTitle avenir"><h2>all itineraries</h2></div>
         <table className="f6 w-100 mw8 center">
         <thead>

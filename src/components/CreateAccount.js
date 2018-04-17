@@ -46,7 +46,7 @@ class CreateAccount extends Component {
       }
     }
     return(
-      <div className="createAccountBox">
+      <div className="createAccountBox marginTop">
         <div><h3 className="avenir b">CREATE YOUR ACCOUNT</h3></div>
         <form id="createForm" onSubmit={this.createCheck}>
           <div className="field">

@@ -17,7 +17,7 @@ class Quiz_01_Destination extends Component {
 
   render() {
     return(
-      <div>
+      <div className="marginTop">
         <form className="QandA" onSubmit={this.saveLatDestin}>
           <label for="question" className="question">where is your destination?</label>
             <SearchBar

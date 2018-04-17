@@ -9,7 +9,7 @@ class Quiz_03_Money extends Component {
   render() {
     return(
       <div>
-        <div className="QandA">
+        <div className="QandA marginTop">
           <h2 className="question">how much money do you want to spend on this trip?</h2>
           <div className="choices" id="q3choices">
             <span onClick={this.saveAnswer} className="pointer" data-answer='1'>$</span>

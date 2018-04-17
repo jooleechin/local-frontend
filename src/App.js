@@ -160,6 +160,8 @@ class App extends Component {
             <Itin
               time={this.props.q3_time}
               date={this.state.date}
+              lat_stay={this.state.lat_stay}
+              lng_stay={this.state.lng_stay}
               destination={this.state.destination}
               place_ID={this.state.place_ID}
               choiceIndex={this.state.choiceIndex}
