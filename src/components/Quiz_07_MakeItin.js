@@ -4,6 +4,7 @@ import localAPI from '../util/localAPI'
 import DateTime from 'grommet/components/DateTime'
 import Form from 'grommet/components/Form'
 import { FormField, TextInput, Button } from 'grommet'
+import DatePicker from 'react-date-picker'
 
 class Quiz_07_MakeItin extends Component {
   state = {
@@ -30,7 +31,8 @@ class Quiz_07_MakeItin extends Component {
       this.props.saveQuiz({
         date: this.state.date,
         itinName: this.state.itinName,
-        itin_id: itin_id
+        itin_id: itin_id,
+        choices: []
       })
       let newAnswer = {
         user_id: this.props.user_id,
@@ -53,11 +55,13 @@ class Quiz_07_MakeItin extends Component {
   }
   render() {
     return(
-      <div className="marginTop">
-        <Form className="formBox">
-          <FormField className="question tl" label='Name of Itinerary:' onChange={this.handleItinNameChange}>
+      <div className="marginTop quiz07box">
+        <Form className="formBox" onSubmit={this.saveItinData}>
+          <div className="question QandA"><h2>what is the name of your itinerary?</h2></div>
+          <FormField className="question tl" onChange={this.handleItinNameChange}>
             <TextInput id="itinName"
-              name="itinName" />
+              name="itinName"
+              placeHolder= 'Name of Itinerary' />
           </FormField>
           <FormField className="tl">
             <DateTime id='date'
@@ -66,12 +70,7 @@ class Quiz_07_MakeItin extends Component {
               onChange={this.handleDateChange}
               value={this.state.date} />
           </FormField>
-          <Button label='submit'
-            id="submitButton"
-            onClick={this.saveItinData}
-            primary={false}
-            secondary={false}
-            type='submit' />
+          <input type="submit" value="submit" id="loginButt1"/>
         </Form>
       </div>
     )

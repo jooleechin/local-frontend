@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import googleAPI from '../util/googleAPI'
+import StarRatingComponent from 'react-star-rating-component'
 
 class Reviews extends Component {
   state = {
@@ -17,13 +18,20 @@ class Reviews extends Component {
 
   renderReview = () => (
     this.state.reviews.map(review => (
-      <div className="tl mt2 review">
+      <div className="tl mt2 review avenir">
         <div className="person">
           <div className="reviewDate">
-            <div>{review.author_name}</div>
+            <div className="b">{review.author_name}</div>
             <div>{review.relative_time_description}</div>
           </div>
-          <span>{review.rating}</span>
+          <div>
+            <StarRatingComponent
+              name='rating'
+              starCount={5}
+              value={review.rating}
+            />
+          </div>
+          {/*<span>{review.rating}</span>*/}
         </div>
         <div className="text">
           {review.text}

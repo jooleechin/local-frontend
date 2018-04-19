@@ -15,9 +15,13 @@
     justify-content: space-between;
     height: auto;
   }
+  .headerButt a{
+    text-decoration: none;
+  }
   .menu a{
     margin-top: 5%;
     margin-bottom: 5%;
+    text-decoration: none;
   }
   .grommetux-anchor--reverse .grommetux-control-icon{
     margin-left: 0;
@@ -26,12 +30,28 @@
     height: auto;
   }
   /* Splashpage */
-  #splashpage{
+  .splashpageContent{
     height: 100vh;
     max-width: 90vw;
     margin-left: auto;
     margin-right: auto;
     position: relative;
+  }
+  #splashpage {
+    background: url('assests/splash.jpg') 20% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: -5%;
+    margin-right: -5%;
+  }
+
+  .icon {
+    position: inline-block;
+    width: 100%;
+  }
+
+  .icon img {
+    width: 20%;
   }
 /*
   .backgroundImage{
@@ -46,6 +66,7 @@
   } */
 
   .titles {
+    padding-bottom: 12%;
     height: 90%;
     display: flex;
     flex-wrap: wrap;
@@ -53,9 +74,10 @@
     justify-content: center;
     vertical-align: middle;
     z-index: 99;
+    color: #555555;
   }
   .appTitle{
-    font-size: 3.5em;
+    font-size: 3.3em;
     font-family: 'Cardo', serif;
     font-weight: 700;
     letter-spacing: 2px;
@@ -69,6 +91,7 @@
     margin-right: auto;
     position: absolute;
     bottom: 5%;
+
   }
   .loginSignupButts button{
     letter-spacing: 1px;
@@ -76,10 +99,10 @@
     margin-top: 3%;
     border: 1px solid black;
     background-color: white;
+    color: #55555;
   }
   /* createAccount */
   .createAccountBox{
-    margin-top: 25%;
     max-width: 85%;
     margin-left: auto;
     margin-right: auto;
@@ -139,44 +162,63 @@
     font-size: 2.8em;
     letter-spacing: 10px;
   }
+  .bm-overlay {
+    left: 0px;
+  }
 
   /* quizzes */
-  .formBox{
-    margin-top: 20%;
+  .activeButt {
+    background-color: #4153AF;
+    color: white;
+  }
+  .error {
+    position: absolute;
+  }
+  .formBox h2{
+    margin-bottom: 10%;
+  }
+  .quiz07box {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
   }
   .formBox .grommetux-form-field__label {
-    font-size: 1.0em;
+    font-size: .8em;
+  }
+  #itinName {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: .6em;
+    border: 1px black solid;
+    border-radius: 5px;
+    /* background-color: rgba(0,0,0,.10); */
+    color: black;
+  }
+  #date {
+    border-radius: 5px;
+    border: 1px black solid;
   }
   .QandA{
-    margin-top: 30%;
+    margin-top: 25%;
   }
   .question{
     font-family: 'Cardo', serif;
     font-weight: 400;
     font-size: 1.8em;
   }
-  .submit{
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
+
+  #loginButt1{
     letter-spacing: 3px;
-    margin-top: 5%;
-    border-radius: 8px;
-    width: 90%;
     font-size: 1.3em;
-    padding: 2%;
     background-color: #4153AF;
     color: white;
-  }
-  #loginButt1{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
     height: 10%;
-    width: 100%;
+    width: 100vw;
     position: absolute;
     bottom: 0%;
-    left: 0%;
-    background-color: #4153AF;
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
+    left: -2.5%;
   }
 
   #PlacesAutocomplete__root{
@@ -294,20 +336,55 @@
   }
 
   /* results.js */
+
+
+  .right-halfBox {
+    background-color: #4858a8;
+    margin-left: -2.5%;
+    margin-right: -3%;
+    color: white;
+  }
+  .notActive {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* color: white;
+    background-color: #4858a8; */
+    color: black;
+    background-color: white;
+    border: none;
+  }
+  .buttDesc {
+    font-size: .6em;
+  }
+  .activeStyle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* color: white;
+    background-color: #4858a8; */
+    color: #4858a8;
+    background-color: white;
+    border: none;
+    font-weight: bold;
+  }
+
   .right-half{
     max-height: 100%;
     width: 100%;
+
   }
   .topHalf{
-    padding-top: 15%;
+    padding-top: 17%;
     max-width: 100%;
-    height: 90vh;
+    height: 88vh;
     /* background-color: pink; */
   }
   .typeAndName {
     width: 90%;
-    height: 14vh;
-    /* margin-left: 5%; */
+    line-height: 1.05;
     margin-left: auto;
     margin-right: auto;
   }
@@ -328,23 +405,12 @@
     letter-spacing: 1px;
   }
   .placeholderImg {
-    /* width: 100%;
-    height: auto;
-    /* background-color: white; */
-    /* box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-top: 17%; */ */
+    /* box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    min-height: 47%;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-  }
-  .placeholderImg img {
-    /* max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; */
-    flex-shrink: 0;
-    min-width: 100%;
-    min-height: 100%;
   }
   .grommetux-control-icon-form-subtract {
     padding-top: 1.5%;
@@ -369,22 +435,29 @@
   .adddress {
     line-height: 1.0;
   }
-
-  .bottomHalf{
-    width: 100%;
+  .bottomHalfContent {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
     vertical-align: middle;
-    height: 10vh;
-    border-top: 1px solid black;
+    height: 12vh;
+    /* border-top: 1px solid black; */
+    background-color: white;
   }
+
+  .bottomHalf{
+    background-color: white;
+  }
+
   /* itin.js */
   .itinBox {
     max-width: 95%;
     margin-left: auto;
     margin-right: auto;
-    height: 100%;
+    height: 92%;
     overflow-y: scroll;
   }
   .itinTitle {
@@ -396,7 +469,7 @@
     margin-left: 30%;
   }
   .itinContent{
-    margin-top: 5%;
+    margin-top: 2.5%;
   }
   .buttTitle{
     display: flex;
@@ -437,9 +510,9 @@
     margin-left: 10%;
     margin-top: auto;
     margin-bottom: auto;
-    font-family: 'Cardo', serif;
-    font-weight: 400;
-    font-size: .9em;
+    /* font-family: 'Cardo', serif;
+    font-weight: 400; */
+    font-size: .8em;
     letter-spacing: 0px;
   }
   .activityDesc .name {
@@ -456,6 +529,12 @@
     color: #4153AF;
   }
   /* viewall.js */
+  .empty {
+    position: absolute;
+    margin-top: 15%;
+    font-size: 1.3em;
+    width: 100%;
+  }
   .tableTitle{
     margin-top: 5%;
     letter-spacing: 2px;
@@ -501,6 +580,32 @@
     padding-bottom: 3%;
   }
   /* detailView */
+  .topLevelReview {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    vertical-align: middle;
+  }
+  .infoReview{
+    margin-top: 5%;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+  }
+  .reviewName {
+    font-size: 1.6em;
+    width: 78%;
+    line-height: 1.0;
+  }
+  .starBox {
+    width: 22%;
+  }
+  .reviewRating {
+    width: 100%;
+  }
   /* detailImage.js */
   .carousel{
     position: relative;
@@ -517,7 +622,11 @@
     color: white;
   }
   .nameRatingInfo {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     border-bottom: 1px solid black;
+    padding-bottom: 3%;
   }
   /* Reviews.js */
   .reviewDate{
@@ -525,11 +634,15 @@
     flex-wrap: nowrap;
     justify-content: space-between;
   }
-  .person {
-    margin-bottom: 2%;
-  }
   .review {
-    border-bottom: 1px solid black;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1%;
+  }
+  .text {
+    line-height: 1.4;
+    font-size: .85em;
   }
   /* trashButton */
   .trashDiv {

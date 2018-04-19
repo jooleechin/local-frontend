@@ -5,8 +5,12 @@ import localAPI from '../util/localAPI'
 
 class TrashButton extends Component {
   trash = (itin_id) => {
-    this.props.history.push('/viewall')
-    return localAPI.deleteItin(itin_id)
+    return localAPI.deleteItin(itin_id).then(() => {
+      this.props.history.push('/viewall')
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
   render() {
     const theme = {

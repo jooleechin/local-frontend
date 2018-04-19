@@ -4,7 +4,7 @@ import googleAPI from '../util/googleAPI'
 import localAPI from '../util/localAPI'
 import placeHolderIMG from '../assests/onion.jpg'
 import { Link, Route } from 'react-router-dom'
-import { Add, Schedule, LinkNext, Subtract } from 'grommet-icons'
+import { Add, Schedule, LinkNext, Subtract, Currency } from 'grommet-icons'
 import StarRatingComponent from 'react-star-rating-component';
 
 import Itin from './Itin'
@@ -16,7 +16,26 @@ class Results extends Component {
     interests: this.props.q4_interests,
     place_ID: '',
     order: 0,
-    types : []
+    types : [],
+    isButtonActive: false,
+    isButtonActive2: false,
+    isButtonActive3: false
+  }
+
+  checkActive = () => {
+    this.setState({
+      isButtonActive: !this.state.isButtonActive
+    })
+  }
+  checkActive2 = () => {
+    this.setState({
+      isButtonActive2: !this.state.isButtonActive2
+    })
+  }
+  checkActive3 = () => {
+    this.setState({
+      isButtonActive3: !this.state.isButtonActive3
+    })
   }
 
   shuffle = (choices, place_id) => {
@@ -31,32 +50,9 @@ class Results extends Component {
       match1.push(match1[next]);
       match2.push(match2[next]);
   }
-  match1.splice(1, len);
-  match2.splice(1, len);
-  console.log('choices', match1)
-  console.log('placeid', match2)
+  match1.splice(1, len)
+  match2.splice(1, len)
   return [match1, match2]
-    /*
-    var arrLength = 0;
-    var argsLength = arguments.length;
-    var rnd, tmp;
-    for (var index = 0; index < argsLength; index += 1) {
-      if (index === 0) {
-        arrLength = arguments[0].length;
-      }
-      if (arrLength !== arguments[index].length) {
-        throw new RangeError("Array lengths do not match.");
-      }
-    }
-    while (arrLength) {
-      rnd = Math.floor(Math.random() * arrLength);
-      arrLength -= 1;
-      for (var i = 0; i < argsLength; i += 1) {
-        tmp = arguments[i][arrLength];
-        arguments[i][arrLength] = arguments[i][rnd];
-        arguments[i][rnd] = tmp;
-      }
-    }*/
   }
 
   listOfChoices = (choices, photoUrls, placeid) => {
@@ -113,20 +109,34 @@ class Results extends Component {
     })
   }
 
-  showMore = (placeID) => (
-    this.props.history.push({
-      pathname: '/detail',
-      state: {
-        googlePlace_ID: placeID
-      }
-    })
-  )
+  showMore = (placeID) => {
+    let path = this.props.location.pathname
+    if (path === '/viewall/main') {
+      this.props.history.push({
+        pathname: '/viewall/main/detail',
+        state: {
+          googlePlace_ID: placeID
+        }
+      })
+    }
+    if (path === '/main') {
+      this.props.history.push({
+        pathname: '/main/detail',
+        state: {
+          googlePlace_ID: placeID
+        }
+      })
+    }
+  }
 
   selectNextChoice = () => {
     this.setState({choiceIndex: this.state.choiceIndex+1})
   }
 
   goToItin = () => {
+    let path = this.props.location.pathname
+    // if (path === '/viewall/main') return this.props.history.push('/viewall/main/detail')
+    // if (path === '/viewall/itin/detail') return this.props.history.push('/itin')
     this.props.history.push('/itin')
   }
 
@@ -186,22 +196,72 @@ class Results extends Component {
     })
   }
 
+  renderPriceLevel = (pricelevel) => {
+    if (pricelevel === undefined) return ''
+    return (
+      <div>
+        <StarRatingComponent
+          name='money'
+          starCount={4}
+          editing={false}
+          renderStarIcon={() => <span>$ </span>}
+          value={pricelevel}
+        />
+      </div>
+    )
+  }
+
   render() {
     let item = this.state.choices[this.state.choiceIndex]
     console.log('choice', item)
     item = item || {}
     let placeID = this.state.place_ID[this.state.choiceIndex]
     let { name, formatted_address, types, price_level, rating, photoUrl } = item
+    const style = {
+      backgroundImage: `url(${photoUrl})`,
+      backgroundRepeat: 'norepeat',
+      backgroundPosition: 'center',
+      backgroundSize: 'cover'
+    }
+    for (var type in types) {
+      if (types[type] === 'bar' || types[type] === 'night_club' || types[type] === 'casino'){
+        types = 'night out'
+      }
+      if (types[type] === 'art_gallery' || types[type] === 'museum'){
+        types = 'museum'
+      }
+      if (types[type] === 'restaurant' || types[type] === 'bakery'){
+        types = 'food'
+      }
+      if (types[type] === 'restaurant' || types[type] === 'bakery'){
+        types = 'food'
+      }
+      if (types[type] === 'department_store' || types[type] === 'shopping_mall' || types[type] === 'store'){
+        types = 'shopping'
+      }
+      if (types[type] === 'cafe'){
+        types = 'cafe'
+      }
+      if (types[type] === 'park' || types[type] === 'natural_feature'){
+        types = 'nature'
+      }
+    }
+    const theme = {
+      icon: {
+        color: 'black'
+      }
+    }
     return(
+      <div className="right-halfBox">
       <div className="right-half">
         <div className="topHalf" onClick={() => this.showMore(placeID)}>
           <div className="typeAndName tl">
-            <h4>restaurant</h4>
+            <h4>{types}</h4>
             <h2>{name}</h2>
           </div>
-          <div className='placeholderImg'><img src={photoUrl} alt={photoUrl}/></div>
+          <div className='placeholderImg' style={style}></div>
           <div className="placeDesc tl">
-            <Subtract />
+            <Subtract theme={theme}/>
             <div><span className="adddress">{formatted_address}</span></div>
             <div>
               <StarRatingComponent
@@ -210,18 +270,45 @@ class Results extends Component {
                 value={rating}
               />
             </div>
-            <div><span>$$</span></div>
+            <div>
+              {this.renderPriceLevel(price_level)}
+            </div>
           </div>
         </div>
         <div className="bottomHalf">
-          <button onClick = {() => {
+        <div className="bottomHalfContent">
+          <button className={this.state.isButtonActive ? "activeStyle" : 'notActive'}onClick = {() => {
               this.setState({order: this.state.order+1})
               this.addToItin()
-            }}><Add />
+              this.checkActive()
+            }}><Add theme={theme}/>
+            <span className="buttDesc b pt2">add place</span>
           </button>
-          <button onClick={this.goToItin}><Schedule /></button>
-          <button onClick={this.selectNextChoice}><LinkNext /></button>
+          <button className={this.state.isButtonActive2 ? "activeStyle" : 'notActive'} onClick={() => {
+            this.goToItin()
+            this.setState({
+              isButtonActive: false,
+              isButtonActive2: false,
+              isButtonActive3: false
+            })
+            this.checkActive2()
+          }}><Schedule theme={theme}/>
+            <span className="buttDesc b pt2">view itinerary</span>
+          </button>
+          <button className={this.state.isButtonActive3 ? "activeStyle" : 'notActive'} onClick={() => {
+              this.selectNextChoice()
+              this.checkActive3()
+              this.setState({
+                isButtonActive: false,
+                isButtonActive2: false,
+                isButtonActive3: false
+              })
+            }}><LinkNext theme={theme}/>
+            <span className="buttDesc b pt2">next</span>
+          </button>
         </div>
+        </div>
+      </div>
       </div>
     )
   }

@@ -60,10 +60,10 @@ class Header extends Component {
         className="avenir tl menu"
         onStateChange={(state) => this.handleStateChange(state)}
       >
-        <Link to=''><a className="menu-item bb b--white-70 b">hi, {this.props.name}</a></Link>
-        <Link to='/viewall'><a className="menu-item bb b--white-70">all itineraries</a></Link>
-        <Link to ='/quiz01'><a className="menu-item bb b--white-70">search a city</a></Link>
-        <Link to=''><a className="menu-item bb b--white-70" onClick={this.props.clearUser} href="/">logout</a></Link>
+        <div className="bb b--white-70 mt3"><Link style={{ textDecoration: 'none' }} to=''><a className="menu-item b">hi, {this.props.name}</a></Link></div>
+        <div className="bb b--white-70 mt3"><Link style={{ textDecoration: 'none' }} to='/viewall'><a className="menu-item">all itineraries</a></Link></div>
+        <div className="bb b--white-70 mt3"><Link to ='/quiz01'><a className="menu-item">search a city</a></Link></div>
+        <div className="bb b--white-70 mt3"><Link style={{ textDecoration: 'none' }} to=''><a className="menu-item" onClick={this.props.clearUser} href="/">logout</a></Link></div>
       </Menu>
       :<Menu right
         width={260}
@@ -87,7 +87,7 @@ class Header extends Component {
     }
     return this.props.user_id
       ?<div>
-        <Link to={navi} ><Previous style={style}/></Link>
+        <Link style={{ textDecoration: 'none' }} to={navi} ><Previous style={style}/></Link>
         <Menu right
           width={260}
           styles={this.state.styles}
@@ -95,11 +95,11 @@ class Header extends Component {
           className="avenir tl menu"
           onStateChange={(state) => this.handleStateChange(state)}
         >
-          <a className="menu-item bb b--white-70" onClick={this.props.clearUser} href="/">logout</a>
+          <a className="menu-item" onClick={this.props.clearUser} href="/">logout</a>
         </Menu>
       </div>
       :<div>
-        <Link to={navi}><Previous style={style}/></Link>
+        <div className="bb b--white-70 mt3"><Link style={{ textDecoration: 'none' }} to={navi}><Previous style={style}/></Link></div>
         <Menu right
           width={260}
           styles={this.state.styles}
@@ -107,7 +107,7 @@ class Header extends Component {
           className="avenir tl menu"
           onStateChange={(state) => this.handleStateChange(state)}
         >
-          <a className="menu-item bb b--white-70" href="/login">login</a>
+          <a className="menu-item" href="/login">login</a>
         </Menu>
       </div>
     }
@@ -123,7 +123,7 @@ class Header extends Component {
     }
     return this.props.user_id
       ?<div>
-        <Link to={navi}><Previous style={style}/></Link>
+        <Link style={{ textDecoration: 'none' }} to={navi}><Previous style={style}/></Link>
         <Menu right
           width={260}
           styles={this.state.styles}
@@ -131,10 +131,10 @@ class Header extends Component {
           className="avenir tl menu"
           onStateChange={(state) => this.handleStateChange(state)}
         >
-          <Link to=''><a className="menu-item bb b--white-70 b">hi, {this.props.name}</a></Link>
-          <Link to='viewall'><a className="menu-item bb b--white-70">all itineraries</a></Link>
-          <Link to='/quiz01'><a className="menu-item bb b--white-70">search a city</a></Link>
-          <Link to=''><a className="menu-item bb b--white-70" onClick={this.props.clearUser} href="/">logout</a></Link>
+          <div className="bb b--white-70 mt3"><Link style={{ textDecoration: 'none' }} to=''><a className="menu-item b">hi, {this.props.name}</a></Link></div>
+          <div className="bb b--white-70 mt3"><Link style={{ textDecoration: 'none' }} to='viewall'><a className="menu-item">all itineraries</a></Link></div>
+          <div className="bb b--white-70 mt3"><Link style={{ textDecoration: 'none' }} to='/quiz01'><a className="menu-item">search a city</a></Link></div>
+          <div className="bb b--white-70 mt3"><Link style={{ textDecoration: 'none' }} to=''><a className="menu-item" onClick={this.props.clearUser} href="/">logout</a></Link></div>
         </Menu>
       </div>
       :<Menu right
@@ -155,18 +155,21 @@ class Header extends Component {
   render() {
     let path = this.props.location.pathname
     let naviButt = this.changeToLogout()
-    if (path === "/main") {
-      naviButt = this.changeToLogout()
-    }
-    if (path === '/detail') {
-      naviButt = this.backButt('/itin')
-    }
-    if (path === '/itin') {
-      naviButt = this.backButt('/main')
-    }
-    if (path === '/login') {
-      naviButt = this.loginBack('/')
-    }
+    if (path === "/main") naviButt = this.changeToLogout()
+    if (path === "/viewall/itin") naviButt = this.backButt('/viewall')
+    if (path === "/viewall/itin/detail") naviButt = this.backButt('/viewall/itin')
+    if (path === '/viewall/main/detail') naviButt = this.backButt('/viewall/main')
+    if (path === '/main/detail') naviButt = this.backButt('/main')
+    if (path === '/detail') naviButt = this.backButt('/itin')
+    if (path === '/itin') naviButt = this.backButt('/main')
+    if (path === '/login' || path === '/signup') naviButt = this.loginBack('/')
+    if (path === '/quiz02') naviButt = this.backButt('/quiz01')
+    if (path === '/quiz03') naviButt = this.backButt('/quiz02')
+    if (path === '/quiz04') naviButt = this.backButt('/quiz03')
+    if (path === '/quiz05') naviButt = this.backButt('/quiz04')
+    if (path === '/quiz06') naviButt = this.backButt('/quiz05')
+    if (path === '/quiz07') naviButt = this.backButt('/quiz06')
+
     return(
       <div className='headerButt'>
         {naviButt}

@@ -32,7 +32,7 @@ const getItemStyle = (draggableStyle, isDragging) => ({
 });
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? 'lightgrey' : 'none',
-  width: 340,
+  width: '100%',
 });
 
 
@@ -46,7 +46,8 @@ class Itin extends Component {
       destination: '',
       editIsHidden: true,
       itin_id: 0,
-      stay_latlng: `${Number(this.props.lat_stay)},${Number(this.props.lng_stay)}`
+      lat2: 0,
+      lng2: 0,
     }
     this.toggleEditHidden = this.toggleEditHidden.bind(this)
     this.onDragEnd = this.onDragEnd.bind(this);
@@ -72,20 +73,25 @@ class Itin extends Component {
     });
   }
 
-  goBack = () => {
-    this.props.history.push('/main')
-  }
   showMore = (e) => {
-    console.log(e.target.dataset.answer)
     let googlePlace_ID = e.target.dataset.answer
-    this.props.history.push({
-      pathname: '/detail',
-      state: { googlePlace_ID }
-    })
+    let path = this.props.location.pathname
+    if (path === '/viewall/itin') {
+      this.props.history.push({
+        pathname: '/viewall/itin/detail',
+        state: { googlePlace_ID }
+      })
+    }
+    if (path === '/itin') {
+      this.props.history.push({
+        pathname: '/detail',
+        state: { googlePlace_ID }
+      })
+    }
   }
 
   deletePlace = (e) => {
-    let place_ID = e.target.dataset.placeID
+    let place_ID = e.target.dataset.placeid
     localAPI.deletePlace(place_ID).then(deletedPlace => {
       let allActivity = this.state.allActivity.filter(place => place.places_id !== deletedPlace.data.place.id)
       this.setState({allActivity})
@@ -95,12 +101,23 @@ class Itin extends Component {
     })
   }
 
-  calcDistance = (lat, lng) => {
-    let secondCoord = `${Number(lat)},${Number(lng)}`
-    console.log(secondCoord)
-    // let distance = google.maps.geometry.spherical.computeDistanceBetween(this.state.stay_latlng, secondCoord)
-    // console.log(distance)
-    // return distance
+  calcDistance = (lat1, lng1) => {
+    let lat2 = this.state.lat2
+    let lng2 = this.state.lng2
+    let radlat1 = Math.PI * lat1/180
+  	let radlat2 = Math.PI * lat2/180
+  	let theta = lat1-lat2
+  	let radtheta = Math.PI * theta/180
+  	let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+  	dist = Math.acos(dist)
+  	dist = dist * (180/Math.PI) * 60 * 1.1515
+    dist = Math.round(dist * 100) / 100
+
+    // let newActivity = this.state.allActivity.forEach((activity) => {
+    //   activity.distance = dist
+    // })
+    // console.log(this.state.allActivity)
+    return dist
   }
 
   newActivity = () => {
@@ -118,7 +135,6 @@ class Itin extends Component {
             {...provided.dragHandleProps}
           >
             <div className="activity" data-answer={activity.googlePlace_ID}>
-              {console.log(activity)}
               <div className="activityImg" data-answer={activity.googlePlace_ID} onClick={this.showMore}>
                 <Image src={activity.photoUrl}
                   alt={activity.photoUrl}
@@ -128,11 +144,11 @@ class Itin extends Component {
                   data-answer={activity.googlePlace_ID}
                   />
               </div>
-              <div className="activityDesc tl" onClick={this.showMore}>
+              <div className="activityDesc tl avenir" onClick={this.showMore}>
                 <div className="name" data-answer={activity.googlePlace_ID}>{activity.places_name}</div>
-                <div className="distance" data-answer={activity.googlePlace_ID}>distance: {() => this.calcDistance(activity.lat, activity.lng)}</div>
+                <div className="distance" data-answer={activity.googlePlace_ID}>distance:{this.calcDistance( Number(activity.lat), Number(activity.long) )} mi</div>
               </div>
-              <button><FormClose onClick={this.deletePlace} data-placeID={activity.places_id}/></button>
+              <button><FormClose onClick={this.deletePlace} data-placeid={activity.places_id}/></button>
             </div>
           </div>
         )}
@@ -149,9 +165,9 @@ class Itin extends Component {
         <div className="itinContent timeOfDay tl">{time}
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
-              <div
+              <div className="timeBox"
                 ref={provided.innerRef}
-                style={getListStyle(snapshot.isDraggingOver)}
+                style={getListStyle(snapshot.isDraggingOver) }
               >
                 {this.newActivity()}
               </div>
@@ -166,26 +182,31 @@ class Itin extends Component {
     let user_id = this.props.user_id
     localAPI.getCurrentItin(itin_id, user_id)
     .then((res) => {
-      console.log(res)
       this.setState({
         allActivity: res,
         date: moment(res[0].itin_date).format('l')
       })
       localAPI.getActivity(itin_id)
       .then((res) => {
-        console.log(res)
         let split = res.destination.split(',')
         let newDest = split[0]
+        console.log(res)
         this.setState({
           itin_id: res.itin_id,
           time: res.q3_time,
           destination: newDest
         })
-      })
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+        localAPI.getQuestionByUserAndItin(this.props.user_id, this.props.itin_id)
+        .then((res) => {
+          this.setState({
+            lat2 : res.lat_stay,
+            lng2 : res.lng_stay
+          })
+        })//end of third .then
+        .catch(err => console.log(err))
+      })//end of second .then
+    })//end of first .then
+    .catch(err => console.log(err))
   }
   render() {
     console.log('itin state', this.state)
@@ -198,10 +219,12 @@ class Itin extends Component {
             </div>
           </div>
           <div className="itineraryBox">
+            {console.log(this.state.allActivity)}
             {this.newTimeOfDay()}
           </div>
-          <TrashButton itin_id={this.state.itin_id} history={this.props.history}/>
+
         </div>
+        <TrashButton itin_id={this.state.itin_id} history={this.props.history}/>
       </ DragDropContext>
     )
   }

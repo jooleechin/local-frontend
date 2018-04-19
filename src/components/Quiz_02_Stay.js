@@ -23,7 +23,7 @@ class Quiz_02_Stay extends Component {
               send={this.sendData}
               placeholder='Search places...'
             />
-          <input type="submit" value="next" className="submit" />
+          <input type="submit" id="loginButt1" className="submit" value="next"/>
         </form>
       </div>
     )

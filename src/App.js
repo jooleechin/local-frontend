@@ -90,38 +90,38 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <CustomHeader/>
-          <Route path="/login" render={props => (
+          <Route exact path="/login" render={props => (
             <Login saveUser={this.saveUser} clearUser={this.clearUser} saveQuiz={this.saveQuiz} {...props} />
           )} />
           <Route exact path="/" render={props => (
             <Splashpage
               saveQuiz={this.saveQuiz} {...props} />
           )} />
-          <Route path="/signup" render={props => (
+          <Route exact path="/signup" render={props => (
             <Signup saveUser={this.saveUser} {...props} />
           )} />
-          <Route path="/quiz01" render={props => (
+          <Route exact path="/quiz01" render={props => (
             <Quiz01 itin_id={this.state.itin_id} saveQuiz={this.saveQuiz} user_id={this.state.user_id} {...props} />
           )} />
-          <Route path="/quiz02" render={props => (
+          <Route exact path="/quiz02" render={props => (
             <Quiz02 saveQuiz={this.saveQuiz} {...props} />
           )} />
-          <Route path="/quiz03" render={props => (
+          <Route exact path="/quiz03" render={props => (
             <Quiz03 saveQuiz={this.saveQuiz} {...props} />
           )} />
-          <Route path="/quiz04" render={props => (
+          <Route exact path="/quiz04" render={props => (
             <Quiz04 saveQuiz={this.saveQuiz} {...props} />
           )} />
-          <Route path="/quiz05" render={props => (
+          <Route exact path="/quiz05" render={props => (
             <Quiz05 q3_time={this.state.q3_time} saveQuiz={this.saveQuiz} {...props} />
           )} />
-          <Route path="/quiz06" render={props => (
+          <Route exact path="/quiz06" render={props => (
             <Quiz06
               q1_transport={this.state.q1_transport}
               q4_interests={this.state.q4_interests}
               saveQuiz={this.saveQuiz} {...props} />
           )} />
-          <Route path="/quiz07" render={props => (
+          <Route exact path="/quiz07" render={props => (
             <Quiz07
               first={this.state.first}
               lat_stay={this.state.lat_stay}
@@ -136,7 +136,7 @@ class App extends Component {
               saveQuiz={this.saveQuiz}
               itin_id={this.state.itin_id} {...props} />
           )} />
-          <Route path="/main" render={props => (
+          <Route exact path="/main" render={props => (
             <Results
               first={this.state.first}
               lat_stay={this.state.lat_stay}
@@ -156,7 +156,27 @@ class App extends Component {
               order={this.state.order}
               itin_id={this.state.itin_id} {...props} />
           )} />
-          <Route path="/itin" render={props => (
+          <Route exact path="/viewall/main" render={props => (
+            <Results
+              first={this.state.first}
+              lat_stay={this.state.lat_stay}
+              lng_stay={this.state.lng_stay}
+              destination={this.state.destination}
+              radius={this.state.radius}
+              q1_transport={this.state.q1_transport}
+              q2_money={this.state.q2_money}
+              q3_time={this.state.q3_time}
+              q4_interests={this.state.q4_interests}
+              user_id={this.state.user_id}
+              choices={this.state.choices}
+              choiceIndex={this.state.choiceIndex}
+              place_ID={this.state.place_ID}
+              saveQuiz={this.saveQuiz}
+              photoUrls={this.state.photoUrls}
+              order={this.state.order}
+              itin_id={this.state.itin_id} {...props} />
+          )} />
+          <Route exact path="/itin" render={props => (
             <Itin
               time={this.props.q3_time}
               date={this.state.date}
@@ -171,13 +191,49 @@ class App extends Component {
               q3_time={this.state.q3_time}
               date={this.state.date} {...props} />
           )} />
-          <Route path="/viewall" render={props => (
+          <Route exact path="/viewall/itin" render={props => (
+            <Itin
+              time={this.props.q3_time}
+              date={this.state.date}
+              lat_stay={this.state.lat_stay}
+              lng_stay={this.state.lng_stay}
+              destination={this.state.destination}
+              place_ID={this.state.place_ID}
+              choiceIndex={this.state.choiceIndex}
+              user_id={this.state.user_id}
+              saveQuiz={this.state.saveQuiz}
+              itin_id={this.state.itin_id}
+              q3_time={this.state.q3_time}
+              date={this.state.date} {...props} />
+          )} />
+          <Route exact path="/viewall" render={props => (
             <AllItinView
               itin_id={this.state.itin_id}
               saveQuiz={this.saveQuiz}
               user_id={this.state.user_id} {...props} />
           )} />
-          <Route path="/detail" render={props => (
+          <Route exact path="/detail" render={props => (
+            <DetailView
+              googlePlace_ID={this.state.googlePlace_ID}
+              itin_id={this.state.itin_id}
+              saveQuiz={this.saveQuiz}
+              user_id={this.state.user_id} {...props} />
+          )} />
+          <Route exact path="/main/detail" render={props => (
+            <DetailView
+              googlePlace_ID={this.state.googlePlace_ID}
+              itin_id={this.state.itin_id}
+              saveQuiz={this.saveQuiz}
+              user_id={this.state.user_id} {...props} />
+          )} />
+          <Route exact path="/viewall/itin/detail" render={props => (
+            <DetailView
+              googlePlace_ID={this.state.googlePlace_ID}
+              itin_id={this.state.itin_id}
+              saveQuiz={this.saveQuiz}
+              user_id={this.state.user_id} {...props} />
+          )} />
+          <Route exact path="/viewall/main/detail" render={props => (
             <DetailView
               googlePlace_ID={this.state.googlePlace_ID}
               itin_id={this.state.itin_id}

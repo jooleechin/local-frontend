@@ -7,7 +7,8 @@ import TextInput from 'grommet/components/TextInput'
 import Button from 'grommet/components/Button'
 import localAPI from '../util/localAPI'
 import {User, Lock, LinkNext } from 'grommet-icons'
-let baseURL = 'http://localhost:3000'
+// let baseURL = 'http://localhost:3000'
+let baseURL = `https://local-app.herokuapp.com/`
 
 
 class Login extends Component {
@@ -16,18 +17,24 @@ class Login extends Component {
     password: ''
   }
   handleEmailChange = (e) => {
+    // console.log(e.target.value)
     this.setState({email: e.target.value})
   }
   handlePasswordChange = (e) => {
+    // console.log(e.target.value)
     this.setState({password: e.target.value})
   }
 
   loginCheck = (e) => {
     e.preventDefault()
     let email = this.state.email
+    // if (!email) return alert('please enter email!')
+
     let password = this.state.password
+    // if (!password) return alert('please enter password!')
     axios.post(`${baseURL}/login`, { email, password })
     .then (data => {
+      console.log(data)
       let id = data.data.matches.id
       let first = data.data.matches.first
       let last = data.data.matches.last
@@ -46,7 +53,7 @@ class Login extends Component {
         //   q2_money: 2,
         //   q3_time: 'morning',
         //   date: '04/01/2018',
-        //   q4_interests: ['cafe'],
+        //   q4_interests: ['cafe', 'park'],
         //   itin_id: 1,
         //   itinName: 'testing itin'
         // })

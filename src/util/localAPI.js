@@ -1,5 +1,6 @@
 import axios from 'axios'
-let baseURL = `http://localhost:3000`
+// let baseURL = `http://localhost:3000`
+let baseURL = `https://local-app.herokuapp.com/`
 
 function createAnswer(newAnswer) {
   return axios.post(`${baseURL}/questions`, newAnswer)
@@ -107,6 +108,15 @@ function deletePlace(place_ID) {
   })
 }
 
+function getQuestionByUserAndItin(user_id, itin_id) {
+  return axios.get(`${baseURL}/questions/user/${user_id}/itin/${itin_id}`)
+  .then((res) => {
+    console.log(res.data.one)
+    return res.data.one
+  })
+  .catch(err => console.log(err))
+}
+
 
 export default {
   createAnswer,
@@ -118,5 +128,6 @@ export default {
   getActivity,
   getQuestions,
   deleteItin,
-  deletePlace
+  deletePlace,
+  getQuestionByUserAndItin
 }

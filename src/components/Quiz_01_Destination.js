@@ -1,14 +1,25 @@
 
 import React, { Component } from 'react'
 import SearchBar from './SearchBar'
+import { LinkNext } from 'grommet-icons'
 
 class Quiz_01_Destination extends Component {
 
   saveLatDestin = (e) => {
     e.preventDefault()
-    this.props.saveQuiz({destination: e.target.search_input.value})
-    this.props.history.push('/quiz02')
-
+    if (e.target.search_input.value) {
+      this.props.saveQuiz({
+        destination: e.target.search_input.value,
+        choices: []
+      })
+      this.props.history.push('/quiz02')
+    } else {
+      return (
+        <div className="error">
+          <h2>please enter a destination!</h2>
+        </div>
+      )
+    }
   }
   sendData = (lat, lng) => {
     console.log(lat)
@@ -25,7 +36,7 @@ class Quiz_01_Destination extends Component {
               placeholder='Search cities...'
               options={{types: ['(cities)']}}
             />
-          <input type="submit" value="next" id="submit" className="submit" />
+          <input type="submit" id="loginButt1" className="submit" value="next"/>
         </form>
       </div>
     )

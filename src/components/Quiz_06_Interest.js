@@ -3,33 +3,61 @@ import React, { Component } from 'react'
 import localAPI from '../util/localAPI'
 
 class Quiz_06_Interest extends Component {
+  constructor () {
+    super()
+    this.state = {
+      isButtonActive: false,
+      isButtonActive2: false,
+      isButtonActive3: false,
+      isButtonActive4: false,
+      isButtonActive5: false,
+      isButtonActive6: false
+    }
+    this.saveAnswer = this.saveAnswer.bind(this)
+  }
 
   removeDup = (val, i, self) => (self.indexOf(val) === i)
 
   saveAnswer = (e) => {
     let interests = [...this.props.q4_interests]
     if (e.target.dataset.answer === 'nature') {
+      this.setState({
+        isButtonActive: !this.state.isButtonActive
+      })
       interests = [...interests, 'park', 'natural_feature']
     }
-    if (e.target.dataset.answer === 'coffee') {
+    if (e.target.dataset.answer === 'cafe') {
+      this.setState({
+        isButtonActive2: !this.state.isButtonActive2
+      })
       interests = [...interests, 'cafe']
     }
     if (e.target.dataset.answer === 'shopping') {
+      this.setState({
+        isButtonActive3: !this.state.isButtonActive3
+      })
       interests = [...interests, 'department_store', 'shopping_mall', 'store']
     }
     if (e.target.dataset.answer === 'food') {
-      interests = [...interests, 'restaurant', 'cafe', 'bar', 'bakery']
+      this.setState({
+        isButtonActive4: !this.state.isButtonActive4
+      })
+      interests = [...interests, 'restaurant', 'bar', 'bakery']
     }
     if (e.target.dataset.answer === 'museum') {
+      this.setState({
+        isButtonActive5: !this.state.isButtonActive5
+      })
       interests = [...interests, 'art_gallery', 'museum']
     }
     if (e.target.dataset.answer === 'night_out') {
+      this.setState({
+        isButtonActive6: !this.state.isButtonActive6
+      })
       interests = [...interests, 'bar', 'night_club', 'casino']
     }
     let unique = interests.filter(this.removeDup)
-    this.props.saveQuiz({
-      q4_interests: unique
-    })
+    this.props.saveQuiz({ q4_interests: unique })
   }
 
   radiusCalc = (transport) => {
@@ -41,10 +69,10 @@ class Quiz_06_Interest extends Component {
         this.props.saveQuiz({radius: '67592'})
         break;
       case 'rideshare':
-        this.props.saveQuiz({radius: '67592'})
+        this.props.saveQuiz({radius: '45592'})
         break;
       case 'walking':
-        this.props.saveQuiz({radius: '4828'})
+        this.props.saveQuiz({radius: '1500'})
         break;
       default:
         this.props.saveQuiz({radius: '1000'})
@@ -54,18 +82,6 @@ class Quiz_06_Interest extends Component {
   submit = (e)  => {
     e.preventDefault()
     this.radiusCalc(this.props.q1_transport)
-    // let newAnswer = {
-    //   user_id: this.props.user_id,
-    //   destination: this.props.destination,
-    //   lat_stay: this.props.lat_stay,
-    //   lng_stay: this.props.lng_stay,
-    //   radius: this.props.radius,
-    //   q1_transport: this.props.q1_transport,
-    //   q2_money: this.props.q2_money,
-    //   q3_time: this.props.q3_time.toString(),
-    //   q4_interests: this.props.q4_interests.toString()
-    // }
-    // localAPI.createAnswer(newAnswer)
     this.props.history.push('/quiz07')
   }
 
@@ -75,14 +91,14 @@ class Quiz_06_Interest extends Component {
         <form className="QandA" onSubmit={this.submit}>
           <label for="question" className="question">what are your interests? select all that apply</label>
           <div className="choices" id="q6choices">
-            <span onClick={this.saveAnswer} className="top2" data-answer='nature'>nature</span>
-            <span onClick={this.saveAnswer} className="top2" data-answer='coffee'>coffee</span>
-            <span onClick={this.saveAnswer} className="top2" data-answer='shopping'>shopping</span>
-            <span onClick={this.saveAnswer} className="top2" data-answer='food'>food</span>
-            <span onClick={this.saveAnswer} className="bottom2" data-answer='museum'>museum</span>
-            <span onClick={this.saveAnswer} className="bottom2" data-answer='night_out'>night out</span>
+            <span onClick={this.saveAnswer} className={this.state.isButtonActive ? 'activeButt top2' : 'top2'} data-answer='nature'>nature</span>
+            <span onClick={this.saveAnswer} className={this.state.isButtonActive2 ? 'activeButt top2' : 'top2'} data-answer='cafe'>cafe</span>
+            <span onClick={this.saveAnswer} className={this.state.isButtonActive3 ? 'activeButt top2' : 'top2'} data-answer='shopping'>shopping</span>
+            <span onClick={this.saveAnswer} className={this.state.isButtonActive4 ? 'activeButt top2' : 'top2'} data-answer='food'>food</span>
+            <span onClick={this.saveAnswer} className={this.state.isButtonActive5 ? 'activeButt bottom2' : 'bottom2'}data-answer='museum'>museum</span>
+            <span onClick={this.saveAnswer} className={this.state.isButtonActive6 ? 'activeButt bottom2' : 'bottom2'}data-answer='night_out'>night out</span>
           </div>
-          <input type="submit" value="next" className="submit"/>
+          <input type="submit" id="loginButt1" className="submit" value="next"/>
         </form>
 
       </div>

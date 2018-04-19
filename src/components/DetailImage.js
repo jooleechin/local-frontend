@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import googleAPI from '../util/googleAPI'
+import { FormPrevious, FormNext } from 'grommet-icons'
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, Dot } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 
@@ -51,6 +52,11 @@ class DetailImage extends Component {
   }
 
   render() {
+    const theme = {
+      icon: {
+        color: 'white'
+      }
+    }
     return(
       <CarouselProvider
         naturalSlideWidth={100}
@@ -63,8 +69,8 @@ class DetailImage extends Component {
           {this.renderImage()}
         </Slider>
         <div className='butts'>
-          <ButtonBack className="oneButt">Back</ButtonBack>
-          <ButtonNext className="oneButt">Next</ButtonNext>
+          <ButtonBack className="oneButt"><FormPrevious theme={theme}/></ButtonBack>
+          <ButtonNext className="oneButt"><FormNext theme={theme}/></ButtonNext>
         </div>
       </CarouselProvider>
     )
