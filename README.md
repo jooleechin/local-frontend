@@ -12,9 +12,8 @@
 * Result card to summarize a user's quiz result * Audio recordings of character pronunciations 
 * Adding more material, units, and lessons 
 * Gamify the app to encourage user retention ## Developers 
-* 
-**Joolee Chin** - [Joolee's GitHub](https://github.com/jooleechin) 
-* 
-**Patrick Coury** - [Patricks's GitHub](https://github.com/couryp) ## Links 
+* **Joolee Chin** - [Joolee's GitHub](https://github.com/jooleechin) 
+* **Patrick Coury** - [Patricks's GitHub](https://github.com/couryp) 
+## Links 
 * [Front-end](https://github.com/couryp/frontEnd-Korean) 
 * [Back-end](https://github.com/couryp/backEnd-Korean)
