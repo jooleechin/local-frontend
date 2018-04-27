@@ -1,8 +1,8 @@
 import axios from 'axios'
-let googleBaseURL = `http://localhost:3000/google`
-let googleKeyURL = `http://localhost:3000/googleKEYWORD`
-let photoBaseURL = `http://localhost:3000/photo`
-let placeIdBaseURL = `http://localhost:3000/placeID`
+let googleBaseURL = `https://local-app.herokuapp.com/google`
+let googleKeyURL = `https://local-app.herokuapp.com/googleKEYWORD`
+let photoBaseURL = `https://local-app.herokuapp.com/photo`
+let placeIdBaseURL = `https://local-app.herokuapp.com/placeID`
 
 function getPlace(lat, lng, radius, type, maxPrice) {
   return axios.get(`${googleBaseURL}?lat=${lat}&lng=${lng}&radius=${radius}&type=${type}&maxprice=${maxPrice}`)

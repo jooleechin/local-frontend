@@ -8,7 +8,7 @@ import Button from 'grommet/components/Button'
 import localAPI from '../util/localAPI'
 import {User, Lock, LinkNext } from 'grommet-icons'
 // let baseURL = 'http://localhost:3000'
-let baseURL = `https://local-app.herokuapp.com/`
+let baseURL = `https://local-app.herokuapp.com`
 
 
 class Login extends Component {

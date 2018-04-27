@@ -3,7 +3,7 @@ import axios from 'axios'
 import { label, TextInput, Button } from 'grommet'
 import { LinkNext } from 'grommet-icons'
 // let baseURL = `http://localhost:3000`
-let baseURL = `https://local-app.herokuapp.com/`
+let baseURL = `https://local-app.herokuapp.com`
 
 class CreateAccount extends Component {
   state = {

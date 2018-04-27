@@ -1,6 +1,6 @@
 import axios from 'axios'
 // let baseURL = `http://localhost:3000`
-let baseURL = `https://local-app.herokuapp.com/`
+let baseURL = `https://local-app.herokuapp.com`
 
 function createAnswer(newAnswer) {
   return axios.post(`${baseURL}/questions`, newAnswer)
