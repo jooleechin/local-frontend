@@ -13,27 +13,18 @@ Developed in two week.
 ## Developers 
 * **Joolee Chin** - [Joolee's GitHub](https://github.com/jooleechin) 
 
-## Screenshots
-
-## Splash Screen:
-<img src="./src/assests/splash.png" width="420">
-
-## Questions:
-<img src="./src/assests/localDemo.gif" width="420">
-
-## Results:
-<img src="./src/assests/results.png" width="420">
-
-## Itinerary:
-<img src="./src/assests/itin.png" width="420">
-
-## Click and Drag Demo:
-<img src="./src/assests/clickandDrag.gif" width="420">
-
-## All Itinerary View:
-<img src="./src/assests/all.png" width="420">
-
 ## Links 
 * [Front-end](https://github.com/jooleechin/local-frontend) 
 * [Back-end](https://github.com/jooleechin/local-backend)
+
+## Screenshots
+
+## Splash Screen & Questions:
+<img src="./src/assests/splash.png" width="390">            <img src="./src/assests/localDemo.gif" width="390">
+
+## Results & All Itinerary View:
+<img src="./src/assests/results.png" width="390">            <img src="./src/assests/all.png" width="390">
+
+## Click and Drag Demo:
+<img src="./src/assests/clickandDrag.gif" width="390">
 
