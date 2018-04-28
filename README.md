@@ -13,6 +13,10 @@ Developed in two week.
 ## Developers 
 * **Joolee Chin** - [Joolee's GitHub](https://github.com/jooleechin) 
 
+## Links 
+* [Front-end](https://github.com/jooleechin/local-frontend) 
+* [Back-end](https://github.com/jooleechin/local-backend)
+
 ## Screenshots
 
 ## Splash Screen & Questions:
@@ -24,7 +28,3 @@ Developed in two week.
 ## Click and Drag Demo:
 <img src="./src/assests/clickandDrag.gif" width="390">
 
-
-## Links 
-* [Front-end](https://github.com/jooleechin/local-frontend) 
-* [Back-end](https://github.com/jooleechin/local-backend)
