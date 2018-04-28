@@ -2,12 +2,9 @@
 import React, { Component } from 'react'
 import googleAPI from '../util/googleAPI'
 import localAPI from '../util/localAPI'
-import placeHolderIMG from '../assests/onion.jpg'
-import { Link, Route } from 'react-router-dom'
-import { Add, Schedule, LinkNext, Subtract, Currency } from 'grommet-icons'
+import { Add, Schedule, LinkNext, Subtract } from 'grommet-icons'
 import StarRatingComponent from 'react-star-rating-component';
 
-import Itin from './Itin'
 class Results extends Component {
   state = {
     choices: [],
@@ -134,7 +131,7 @@ class Results extends Component {
   }
 
   goToItin = () => {
-    let path = this.props.location.pathname
+    // let path = this.props.location.pathname
     // if (path === '/viewall/main') return this.props.history.push('/viewall/main/detail')
     // if (path === '/viewall/itin/detail') return this.props.history.push('/itin')
     this.props.history.push('/itin')

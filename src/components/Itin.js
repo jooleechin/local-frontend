@@ -1,9 +1,7 @@
 
 import React, { Component } from 'react'
 import localAPI from '../util/localAPI'
-import { FormPreviousLink, Edit, FormClose } from 'grommet-icons'
-import { BrowserRouter, Route, Link } from 'react-router-dom'
-import placeHolderIMG from '../assests/onion.jpg'
+import { FormClose } from 'grommet-icons'
 import Image from 'grommet/components/Image'
 import TrashButton from './TrashButton'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -18,7 +16,6 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 // using some little inline style helpers to make the app look okay
-const grid = 8;
 const getItemStyle = (draggableStyle, isDragging) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: 'none',

@@ -3,8 +3,7 @@ import React, { Component } from 'react'
 import localAPI from '../util/localAPI'
 import DateTime from 'grommet/components/DateTime'
 import Form from 'grommet/components/Form'
-import { FormField, TextInput, Button } from 'grommet'
-import DatePicker from 'react-date-picker'
+import { FormField, TextInput } from 'grommet'
 
 class Quiz_07_MakeItin extends Component {
   state = {

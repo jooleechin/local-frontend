@@ -1,6 +1,5 @@
 
-import React, { Component } from 'react'
-import localAPI from '../util/localAPI'
+import React, { Component } from 'react' 
 
 class Quiz_06_Interest extends Component {
   constructor () {

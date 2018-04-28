@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react'
 import SearchBar from './SearchBar'
-import { LinkNext } from 'grommet-icons'
 
 class Quiz_01_Destination extends Component {
 

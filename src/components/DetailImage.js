@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import googleAPI from '../util/googleAPI'
 import { FormPrevious, FormNext } from 'grommet-icons'
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, Dot } from 'pure-react-carousel';
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 
 class DetailImage extends Component {

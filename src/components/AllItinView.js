@@ -36,7 +36,7 @@ class AllItinView extends Component {
   }
 
   newTable = () => {
-    if (this.state.allItins.length == 0) {
+    if (this.state.allItins.length === 0) {
       return (
         <div className="empty avenir">
           <h2>you have no saved itineraries :(</h2>

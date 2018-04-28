@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import PasswordInput from 'grommet/components/PasswordInput'
 import FormField from 'grommet/components/FormField'
 import TextInput from 'grommet/components/TextInput'
-import Button from 'grommet/components/Button'
-import localAPI from '../util/localAPI'
-import {User, Lock, LinkNext } from 'grommet-icons'
+import { LinkNext } from 'grommet-icons'
 // let baseURL = 'http://localhost:3000'
 let baseURL = `https://local-app.herokuapp.com`
 
@@ -39,7 +36,6 @@ class Login extends Component {
       let first = data.data.matches.first
       let last = data.data.matches.last
       let email = data.data.matches.email
-      let phone = data.data.matches.phone
       console.log(data, 'data')
       if (data.data.matches) {
         this.props.saveUser(id, first, last, email)

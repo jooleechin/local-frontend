@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { User, Search, Previous } from 'grommet-icons'
+import { Previous } from 'grommet-icons'
 import { stack as Menu } from 'react-burger-menu'
 
 class Header extends Component {
