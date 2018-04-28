@@ -1,4 +1,9 @@
 import axios from 'axios'
+// let googleBaseURL = `https://localhost:3000/google`
+// let googleKeyURL = `https://localhost:3000/googleKEYWORD`
+// let photoBaseURL = `https://localhost:3000/photo`
+// let placeIdBaseURL = `https://localhost:3000/placeID`
+
 let googleBaseURL = `https://local-app.herokuapp.com/google`
 let googleKeyURL = `https://local-app.herokuapp.com/googleKEYWORD`
 let photoBaseURL = `https://local-app.herokuapp.com/photo`
