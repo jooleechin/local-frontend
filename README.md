@@ -15,25 +15,16 @@ Developed in two week.
 
 ## Screenshots
 
-## Splash Screen:
-<img src="./src/assests/splash.png" width="420">
+## Splash Screen & Questions:
+<img src="./src/assests/splash.png" width="400"> <img src="./src/assests/localDemo.gif" width="400">
 
-## Questions:
-<img src="./src/assests/localDemo.gif" width="420">
+## Results & All Itinerary View:
+<img src="./src/assests/results.png" width="400"> <img src="./src/assests/all.png" width="400">
 
-## Results:
-<img src="./src/assests/results.png" width="420">
+## Itinerary & Click and Drag Demo:
+<img src="./src/assests/itin.png" width="400"> <img src="./src/assests/clickandDrag.gif" width="400">
 
-## Itinerary:
-<img src="./src/assests/itin.png" width="420">
-
-## Click and Drag Demo:
-<img src="./src/assests/clickandDrag.gif" width="420">
-
-## All Itinerary View:
-<img src="./src/assests/all.png" width="420">
 
 ## Links 
 * [Front-end](https://github.com/jooleechin/local-frontend) 
 * [Back-end](https://github.com/jooleechin/local-backend)
-
