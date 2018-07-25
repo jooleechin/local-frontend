@@ -22,9 +22,8 @@ Developed in two week.
 ## Splash Screen & Questions:
 <img src="./src/assests/splash.png" width="390">            <img src="./src/assests/localDemo.gif" width="390">
 
-## Results & All Itinerary View:
-<img src="./src/assests/results.png" width="390">            <img src="./src/assests/all.png" width="390">
+## Results & Detail View:
+<img src="./src/assests/results.png" width="390">            <img src="./src/assests/details.gif" width="390">
 
-## Click and Drag Demo:
-<img src="./src/assests/clickandDrag.gif" width="390">
-
+## All Itinerary & Itinerary:
+<img src="./src/assests/all.png" width="390">            <img src="./src/assests/clickandDrag.gif" width="390"> 
